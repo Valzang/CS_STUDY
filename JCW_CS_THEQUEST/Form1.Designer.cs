@@ -238,6 +238,7 @@ namespace JCW_CS_THEQUEST
             this.label_Ghoul.Size = new System.Drawing.Size(38, 12);
             this.label_Ghoul.TabIndex = 19;
             this.label_Ghoul.Text = "Ghoul";
+            this.label_Ghoul.Visible = false;
             // 
             // label_PlayerHitPoints
             // 
@@ -258,6 +259,7 @@ namespace JCW_CS_THEQUEST
             this.label_BatHitPoints.Size = new System.Drawing.Size(72, 12);
             this.label_BatHitPoints.TabIndex = 21;
             this.label_BatHitPoints.Text = "BatHitPoints";
+            this.label_BatHitPoints.Visible = false;
             // 
             // label_GhostHitPoints
             // 
@@ -268,6 +270,7 @@ namespace JCW_CS_THEQUEST
             this.label_GhostHitPoints.Size = new System.Drawing.Size(87, 12);
             this.label_GhostHitPoints.TabIndex = 22;
             this.label_GhostHitPoints.Text = "GhostHitPoints";
+            this.label_GhostHitPoints.Visible = false;
             // 
             // label_GhoulHitPoints
             // 
@@ -278,6 +281,7 @@ namespace JCW_CS_THEQUEST
             this.label_GhoulHitPoints.Size = new System.Drawing.Size(87, 12);
             this.label_GhoulHitPoints.TabIndex = 23;
             this.label_GhoulHitPoints.Text = "GhoulHitPoints";
+            this.label_GhoulHitPoints.Visible = false;
             // 
             // label_Ghost
             // 
@@ -288,6 +292,7 @@ namespace JCW_CS_THEQUEST
             this.label_Ghost.Size = new System.Drawing.Size(38, 12);
             this.label_Ghost.TabIndex = 18;
             this.label_Ghost.Text = "Ghost";
+            this.label_Ghost.Visible = false;
             // 
             // label_Bat
             // 
@@ -298,6 +303,7 @@ namespace JCW_CS_THEQUEST
             this.label_Bat.Size = new System.Drawing.Size(23, 12);
             this.label_Bat.TabIndex = 1;
             this.label_Bat.Text = "Bat";
+            this.label_Bat.Visible = false;
             // 
             // label_Player
             // 

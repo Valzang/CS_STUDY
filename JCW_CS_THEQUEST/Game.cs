@@ -93,8 +93,8 @@ namespace JCW_CS_THEQUEST
 
         private Point GetRandomLocation(Random random)
         {
-            return new Point(boundaries.Left + random.Next(boundaries.Right / 10 - boundaries.Left / 10) * 10,
-                boundaries.Top + random.Next(boundaries.Bottom / 10 - boundaries.Top / 10) * 10);
+            return new Point((boundaries.Left+10)/10*10 + random.Next(boundaries.Right - boundaries.Left)/10 * 10,
+                (boundaries.Top+10)/10*10 + random.Next(boundaries.Bottom - boundaries.Top)/10 * 10);
         }       
 
     }    

@@ -40,12 +40,14 @@ namespace JCW_CS_THEQUEST
             } 
         }
 
+        // 생성자 ================================================================
         public Mover() { }
 
         public Mover(Game game, Point location)
         {
             this.game = game;
             this.location = location;
+            Randomizer = new Random(Guid.NewGuid().GetHashCode());
         }
 
         public bool NearBy(Point locationToCheck, int distance)
@@ -70,7 +72,7 @@ namespace JCW_CS_THEQUEST
                         newLocation.Y -= MoveInterval;
                     break;
                 case Direction.Down:
-                    if (newLocation.Y + 4*MoveInterval <= boundaries.Bottom)
+                    if (newLocation.Y + MoveInterval <= boundaries.Bottom)
                         newLocation.Y += MoveInterval;
                     break;
                 case Direction.Left:
@@ -78,10 +80,8 @@ namespace JCW_CS_THEQUEST
                         newLocation.X -= MoveInterval;
                     break;
                 case Direction.Right:
-                    if (newLocation.X + 4*MoveInterval <= boundaries.Right)
+                    if (newLocation.X + MoveInterval <= boundaries.Right)
                         newLocation.X += MoveInterval;
-                    break;
-                default: 
                     break;
             }
             PictureBox.Location = newLocation;
@@ -155,6 +155,7 @@ namespace JCW_CS_THEQUEST
         public void Hit(int maxDamage, Random random)
         {
             hitPoints -= random.Next(1, maxDamage);
+            Label_HitPoints.Text = hitPoints.ToString();
         }
         public void IncreaseHealth(int health, Random random)
         {
@@ -208,6 +209,7 @@ namespace JCW_CS_THEQUEST
 
         public void Attack(Direction direction, int damage)
         {
+
             game.HitPlayer(2, Randomizer);
         }
 
@@ -233,12 +235,12 @@ namespace JCW_CS_THEQUEST
         public Bat(Game game, Point location) : base(game, location, 6) 
         {
             enemy_name = "Bat";
-            //Label.Text = "label_Bat";
         }
         public override void Move(Random random)
         {
+            random = new Random(Guid.NewGuid().GetHashCode());
             int temp = random.Next(1, 3); // 랜덤으로 1이나 2
-            Direction dir = Direction.Down;
+            Direction dir = Direction.Up;
             if (temp == 1) // 1일 때에는 랜덤하게 움직임.
             {
                 temp = random.Next(1, 5);
@@ -280,6 +282,7 @@ namespace JCW_CS_THEQUEST
         }
         public override void Move(Random random)
         {
+            //random = new Random();
             int temp = random.Next(1, 4); // 랜덤으로 1이나 2
             Direction dir = Direction.Down;
             if (temp == 1) // 1일 때에는 플레이어 쪽으로 움직임.
@@ -302,6 +305,7 @@ namespace JCW_CS_THEQUEST
         }
         public override void Move(Random random)
         {
+            //random = new Random();
             int temp = random.Next(1, 4); // 랜덤으로 1이나 2
             Direction dir = Direction.Down;
             if (temp <= 2) // 1~2일 때에는 플레이어 쪽으로 움직임.

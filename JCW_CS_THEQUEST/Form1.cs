@@ -13,7 +13,7 @@ namespace JCW_CS_THEQUEST
     public partial class Form1 : Form
     {
         Game c_ObjectController = new Game(new Rectangle(76, 54, 452, 188));
-        Random Randomizer = new Random();
+        Random Randomizer = new Random(Guid.NewGuid().GetHashCode());
 
         public Form1()
         {
@@ -27,21 +27,27 @@ namespace JCW_CS_THEQUEST
                     case "Bat":
                         enemy.PictureBox = pictureBox_Bat;
                         enemy.Label = label_Bat;
+                        enemy.Label.Visible = true;
                         enemy.Label_HitPoints = label_BatHitPoints;
+                        enemy.Label_HitPoints.Visible = true;
                         enemy.Label_HitPoints.Text = enemy.HitPoints.ToString();
                         //pictureBox_Bat.Visible = true;
                         break;
                     case "Ghoul":
                         enemy.PictureBox = pictureBox_Ghoul;
                         enemy.Label = label_Ghoul;
+                        enemy.Label.Visible = true;
                         enemy.Label_HitPoints = label_GhoulHitPoints;
+                        enemy.Label_HitPoints.Visible = true;
                         enemy.Label_HitPoints.Text = enemy.HitPoints.ToString();
                         //pictureBox_Ghoul.Visible = true;
                         break;
                     case "Ghost":
                         enemy.PictureBox = pictureBox_Ghost;
                         enemy.Label = label_Ghost;
+                        enemy.Label.Visible = true;
                         enemy.Label_HitPoints = label_GhostHitPoints;
+                        enemy.Label_HitPoints.Visible = true;
                         enemy.Label_HitPoints.Text = enemy.HitPoints.ToString();
                         //pictureBox_Ghost.Visible = true;
                         break;
@@ -80,6 +86,14 @@ namespace JCW_CS_THEQUEST
 
 
 
+        }
+
+        private void UpdateCharacters()
+        {
+            foreach (Enemy enemy in c_ObjectController.Enemies)
+            {
+
+            }
         }
 
         private void button_Move_Left_Click(object sender, EventArgs e)
