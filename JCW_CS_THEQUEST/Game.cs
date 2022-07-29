@@ -9,19 +9,20 @@ using System.Drawing;
 namespace JCW_CS_THEQUEST
 {
     class Game
-    {        // private 변수
+    {
+        // private 변수 ===========================================================
         private Player player;          // 플레이어
         private Rectangle boundaries;   // 맵 크기
         private int level = 0;          // 현재 맵
 
-        // public 변수
+        // public 변수 ===========================================================
         public List<Enemy> Enemies;     // 적들 리스트
         public List<Weapon> WeaponInRoom;     // 방안에 있는 무기
 
-        // GetBoundaries
+        // 맵 크기 ===========================================================
         public Rectangle Boundaries { get { return boundaries; } }
 
-        // 생성자
+        // 생성자===========================================================
         public Game() { }
         public Game(Rectangle boundaries)
         {
@@ -50,7 +51,7 @@ namespace JCW_CS_THEQUEST
         {
             player.IncreaseHealth(health, random);
         }
-        public void SetPictureBox(PictureBox _PB, Label _Name, Label _HitPoints) 
+        public void PlayerSetPictureBox(PictureBox _PB, Label _Name, Label _HitPoints) 
         { 
             player.PictureBox = _PB;
             player.PictureBox.Visible = true;
@@ -58,6 +59,10 @@ namespace JCW_CS_THEQUEST
             player.Label = _Name;
             player.Label_HitPoints = _HitPoints;
             player.Label_HitPoints.Text = player.HitPoints.ToString();
+        }
+        public void PlayerUpdate()
+        {
+            player.Update();
         }
 
         // Level 관련 함수==========================================================
@@ -75,14 +80,14 @@ namespace JCW_CS_THEQUEST
                     break;
             }
         }
+
+        // ===========================================================
         public void Move(Direction direction, Random random)
         {
             player.Move(direction);
             foreach (Enemy enemy in Enemies)
                 enemy.Move(random);
-        }
-
-       
+        }       
 
         public void Attack(Direction direction, Random random)
         {

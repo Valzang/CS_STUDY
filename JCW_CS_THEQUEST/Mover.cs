@@ -19,6 +19,9 @@ namespace JCW_CS_THEQUEST
         protected Game game;
         protected Random Randomizer;
 
+        private int hitPoints; // 0 되면 죽음
+        public int HitPoints { get { return hitPoints; } set { hitPoints = value; } }
+
 
         // 라벨================================================================
         protected Label label;
@@ -48,6 +51,13 @@ namespace JCW_CS_THEQUEST
             this.game = game;
             this.location = location;
             Randomizer = new Random(Guid.NewGuid().GetHashCode());
+        }
+        
+        //=========================================================================
+        virtual public void Update()
+        {
+            PictureBox.Location = Location;
+            Label_HitPoints.Text = hitPoints.ToString();
         }
 
         public bool NearBy(Point locationToCheck, int distance)
@@ -84,7 +94,6 @@ namespace JCW_CS_THEQUEST
                         newLocation.X += MoveInterval;
                     break;
             }
-            PictureBox.Location = newLocation;
             return newLocation;
         }
         public Point Move(Direction direction, Point Player_Location, Rectangle boundaries)
@@ -110,7 +119,6 @@ namespace JCW_CS_THEQUEST
                 default:
                     break;
             }
-            PictureBox.Location = Player_Location;
             return Player_Location;
         }
     }
@@ -118,8 +126,6 @@ namespace JCW_CS_THEQUEST
     class Player : Mover
     {
         private Weapon equippedWeapon;
-        private int hitPoints; // 0 되면 죽음
-        public int HitPoints { get { return hitPoints; } }
 
         private List<Weapon> inventory = new List<Weapon>();
         public List<string> Weapons
@@ -134,8 +140,7 @@ namespace JCW_CS_THEQUEST
         }
         public Player(Game game, Point location) : base(game, location)
         {
-            hitPoints = 10;
-            //Label.Text = "label_Player";
+            HitPoints = 10;
         }
 
         public void Move(Direction direction)
@@ -144,9 +149,12 @@ namespace JCW_CS_THEQUEST
             
             foreach(Weapon weapon in game.WeaponInRoom)
             {
-                if (!weapon.PickedUp)
+                if (!weapon.PickedUp) // 해당 아이템을 습득하지 않았다면
                 {
-                    NearBy(location, 10);
+                    if (NearBy(location, 10)) // 플레이어 근방 10 거리 안에 있는지
+                    {
+                        weapon.PickUpWeapon();
+                    }
                 }
             }
                      
@@ -154,18 +162,27 @@ namespace JCW_CS_THEQUEST
 
         public void Hit(int maxDamage, Random random)
         {
-            hitPoints -= random.Next(1, maxDamage);
-            Label_HitPoints.Text = hitPoints.ToString();
+            HitPoints -= random.Next(1, maxDamage);
         }
         public void IncreaseHealth(int health, Random random)
         {
-            hitPoints += random.Next(1, health);
+            HitPoints += random.Next(1, health);
         }
         public void Equip(string weaponName)
         {
             foreach (Weapon weapon in inventory)
+            { 
                 if (weapon.Weapon_Name == weaponName)
+                { 
                     equippedWeapon = weapon;
+                    weapon.SetEquipped();
+                }
+                else if(weapon.IsEquipped == true)
+                {
+                    weapon.SetEquipped();
+                }
+            }
+
         }
 
         public void Attack(Direction direction, Random random)
@@ -178,13 +195,11 @@ namespace JCW_CS_THEQUEST
     {
         protected string enemy_name;
         private const int NearPlayerDistance = 25;
-        private int hitPoints;
-        public int HitPoints { get { return hitPoints; } }
         public bool Dead
         {
             get
             {
-                return hitPoints <= 0;
+                return HitPoints <= 0;
             }
         }
 
@@ -192,14 +207,14 @@ namespace JCW_CS_THEQUEST
 
         public Enemy(Game game, Point location, int hitPoints) : base(game, location)
         {
-            this.hitPoints = hitPoints;
+            this.HitPoints = hitPoints;
         }
 
         public abstract void Move(Random random);
 
         public void Hit(int maxDamage, Random random)
         {
-            hitPoints -= random.Next(1, maxDamage);
+            HitPoints -= random.Next(1, maxDamage);
         }
 
         protected bool NearPlayer()
@@ -321,24 +336,55 @@ namespace JCW_CS_THEQUEST
     abstract class Weapon : Mover
     {
         protected string weapon_name;
+        public string Weapon_Name { get { return weapon_name; } }
+
         private bool pickedUp;
         public bool PickedUp { get { return pickedUp; } set { pickedUp = value; } }
+
+        private bool isEquipped;
+        public bool IsEquipped { get { return isEquipped; } set { isEquipped = value; } }
+
+        public PictureBox InventoryItem;
+        public void PickUpWeapon() 
+        { 
+            pickedUp = true;
+            PictureBox.Visible = false;
+            PictureBox.Enabled = false;
+            InventoryItem.Visible = true;
+            InventoryItem.Enabled = true;
+        }
+        public void SetEquipped()
+        {
+            IsEquipped = !IsEquipped;
+        }
+
 
         private int damage;
         public int Damage { get { return damage; } set { damage = value; } }
 
+
+        // 생성자 ========================================================
         public Weapon(Game game, Point location)
         {
             this.game = game;
             this.location = location;
             pickedUp = false;
+            isEquipped = false;
         }
-        public void PickUpWeapon() { pickedUp = true; }
 
-        public string Weapon_Name { get { return weapon_name; } }
+        public override void Update()
+        {
+            PictureBox.Location = Location;
+            if (IsEquipped == true)
+                InventoryItem.BorderStyle = BorderStyle.FixedSingle;
+            else
+                InventoryItem.BorderStyle = BorderStyle.None;
+
+        }
+
         public abstract void Attack(Direction direction, Random random);
 
-        protected bool DamageEnemy(Direction direction, int radius, int damge, Random random) 
+        protected bool DamageEnemy(Direction direction, int radius, int damage, Random random) 
         {
             Point target = game.PlayerLocation;
             for (int distance=0; distance < radius; distance++)

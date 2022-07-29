@@ -18,11 +18,18 @@ namespace JCW_CS_THEQUEST
         public Form1()
         {
             InitializeComponent();
-            c_ObjectController.SetPictureBox(pictureBox_Player, label_Player, label_PlayerHitPoints);
+            c_ObjectController.PlayerSetPictureBox(pictureBox_Player, label_Player, label_PlayerHitPoints);
             c_ObjectController.NewLevel(Randomizer);
-            foreach(Enemy enemy in c_ObjectController.Enemies)
+            LevelInit();
+
+
+        }
+
+        private void LevelInit()
+        {
+            foreach (Enemy enemy in c_ObjectController.Enemies)
             {
-                switch(enemy.EnemyName)
+                switch (enemy.EnemyName)
                 {
                     case "Bat":
                         enemy.PictureBox = pictureBox_Bat;
@@ -31,7 +38,6 @@ namespace JCW_CS_THEQUEST
                         enemy.Label_HitPoints = label_BatHitPoints;
                         enemy.Label_HitPoints.Visible = true;
                         enemy.Label_HitPoints.Text = enemy.HitPoints.ToString();
-                        //pictureBox_Bat.Visible = true;
                         break;
                     case "Ghoul":
                         enemy.PictureBox = pictureBox_Ghoul;
@@ -40,7 +46,6 @@ namespace JCW_CS_THEQUEST
                         enemy.Label_HitPoints = label_GhoulHitPoints;
                         enemy.Label_HitPoints.Visible = true;
                         enemy.Label_HitPoints.Text = enemy.HitPoints.ToString();
-                        //pictureBox_Ghoul.Visible = true;
                         break;
                     case "Ghost":
                         enemy.PictureBox = pictureBox_Ghost;
@@ -49,7 +54,6 @@ namespace JCW_CS_THEQUEST
                         enemy.Label_HitPoints = label_GhostHitPoints;
                         enemy.Label_HitPoints.Visible = true;
                         enemy.Label_HitPoints.Text = enemy.HitPoints.ToString();
-                        //pictureBox_Ghost.Visible = true;
                         break;
                 }
             }
@@ -59,80 +63,90 @@ namespace JCW_CS_THEQUEST
                 {
                     case "Sword":
                         weapon.PictureBox = pictureBox_Sword;
-                        //pictureBox_Sword.Visible = true;
+                        weapon.InventoryItem = pictureBox_Equip_Sword;
                         break;
                     case "Bow":
                         weapon.PictureBox = pictureBox_Bow;
-                        //pictureBox_Bow.Visible = true;
+                        weapon.InventoryItem = pictureBox_Equip_Bow;
                         break;
                     case "Battleaxe":
                         weapon.PictureBox = pictureBox_Battleaxe;
-                        //pictureBox_Battleaxe.Visible = true;
+                        weapon.InventoryItem = pictureBox_Equip_Battleaxe;
                         break;
-                    case "Mase":                        
+                    case "Mace":
                         weapon.PictureBox = pictureBox_Mace;
-                        //pictureBox_Mace.Visible = true;
+                        weapon.InventoryItem = pictureBox_Equip_Mace;
                         break;
                     case "Shield":
                         weapon.PictureBox = pictureBox_Shield;
-                        ///pictureBox_Shield.Visible = true;
-                        break;                        
+                        weapon.InventoryItem = pictureBox_Equip_Shield;
+                        break;
                     case "Quiver":
                         weapon.PictureBox = pictureBox_Quiver;
-                        //pictureBox_Quiver.Visible = true;
+                        weapon.InventoryItem = pictureBox_Equip_Quiver;
                         break;
                 }
             }
-
-
-
         }
 
         private void UpdateCharacters()
         {
+            c_ObjectController.PlayerUpdate();
             foreach (Enemy enemy in c_ObjectController.Enemies)
             {
-
+                enemy.Update();
+            }
+            foreach (Weapon weapon in c_ObjectController.WeaponInRoom)
+            {
+                weapon.Update();
             }
         }
 
         private void button_Move_Left_Click(object sender, EventArgs e)
         {
             c_ObjectController.Move(Direction.Left, Randomizer);
+            UpdateCharacters();
         }
 
         private void button_Move_Right_Click(object sender, EventArgs e)
         {
             c_ObjectController.Move(Direction.Right, Randomizer);
+            UpdateCharacters();
         }
 
         private void button_Move_Up_Click(object sender, EventArgs e)
         {
             c_ObjectController.Move(Direction.Up, Randomizer);
+            UpdateCharacters();
         }
 
         private void button_Move_Down_Click(object sender, EventArgs e)
         {
             c_ObjectController.Move(Direction.Down, Randomizer);
+            UpdateCharacters();
         }
         
         private void button_Attack_Left_Click(object sender, EventArgs e)
         {
-
+            c_ObjectController.Attack(Direction.Left, Randomizer);
+            UpdateCharacters();
         }
 
         private void button_Attack_Right_Click(object sender, EventArgs e)
         {
-
+            c_ObjectController.Attack(Direction.Right, Randomizer);
+            UpdateCharacters();
         }
         private void button_Attack_Up_Click(object sender, EventArgs e)
         {
-
+            c_ObjectController.Attack(Direction.Up, Randomizer);
+            UpdateCharacters();
         }
 
         private void button_Attack_Down_Click(object sender, EventArgs e)
         {
-
+            c_ObjectController.Attack(Direction.Down, Randomizer);
+            UpdateCharacters();
         }
 
     }
