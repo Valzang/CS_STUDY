@@ -67,12 +67,37 @@ namespace JCW_CS_THEQUEST.Mover
             Damage = 10;
             Range = 30;
         }
+
+        private void Explosion()
+        {
+            this.PictureBox.Visible = false;
+            this.PictureBox.Enabled = false;
+            PictureBox.Image = JCW_CS_THEQUEST.Properties.Resources.Explosion;
+            this.PictureBox.Visible = true;
+            this.PictureBox.Enabled = true;
+            int size = PictureBox.Size.Width * 2;
+            while (size >= PictureBox.Size.Width)
+            {
+                Thread.Sleep(10);
+                PictureBox.Scale((float)1.1);
+                PictureBox.Location = location;
+                PictureBox.Update();
+            }
+            this.PictureBox.Visible = false;
+            this.PictureBox.Enabled = false;
+        }
+
         public override void Attack(Direction direction, Random random)
         {
             Used();
+
+            // 플레이어 위치부터 발사 시작
             this.PictureBox.Location = game.PlayerLocation;
+
+            // 이미지 켜기
             this.PictureBox.Visible = true;
             this.PictureBox.Enabled = true;
+
 
             while(this.PictureBox.Visible)
             {
@@ -87,23 +112,7 @@ namespace JCW_CS_THEQUEST.Mover
                             this.PictureBox.Location = this.location;
                         }
                         else
-                        {
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                            PictureBox.Image = JCW_CS_THEQUEST.Properties.Resources.Explosion;
-                            this.PictureBox.Visible = true;
-                            this.PictureBox.Enabled = true;
-                            int size = PictureBox.Size.Width * 2;
-                            while (size >= PictureBox.Size.Width)
-                            {
-                                Thread.Sleep(10);
-                                PictureBox.Scale((float)1.1);
-                                PictureBox.Location = location;
-                                PictureBox.Update();
-                            }
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                        }   
+                            Explosion();
                         break;
                     case Direction.Down:
                         if (location.Y + 10 < game.Boundaries.Bottom)
@@ -112,23 +121,7 @@ namespace JCW_CS_THEQUEST.Mover
                             this.PictureBox.Location = this.location;
                         }
                         else
-                        {
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                            PictureBox.Image = JCW_CS_THEQUEST.Properties.Resources.Explosion;
-                            this.PictureBox.Visible = true;
-                            this.PictureBox.Enabled = true;
-                            int size = PictureBox.Size.Width * 2;
-                            while (size >= PictureBox.Size.Width)
-                            {
-                                Thread.Sleep(10);
-                                PictureBox.Scale((float)1.1);
-                                PictureBox.Location = location;
-                                PictureBox.Update();
-                            }
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                        }
+                            Explosion();
                         break;
                     case Direction.Left:
                         if (location.X - 10 > game.Boundaries.Left)
@@ -137,23 +130,7 @@ namespace JCW_CS_THEQUEST.Mover
                             this.PictureBox.Location = this.location;
                         }
                         else
-                        {
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                            PictureBox.Image = JCW_CS_THEQUEST.Properties.Resources.Explosion;
-                            this.PictureBox.Visible = true;
-                            this.PictureBox.Enabled = true;
-                            int size = PictureBox.Size.Width * 2;
-                            while (size >= PictureBox.Size.Width)
-                            {
-                                Thread.Sleep(10);
-                                PictureBox.Scale((float)1.1);
-                                PictureBox.Location = location;
-                                PictureBox.Update();
-                            }
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                        }
+                            Explosion();
                         break;
                     case Direction.Right:
                         if (location.X + 10 < game.Boundaries.Right)
@@ -162,44 +139,14 @@ namespace JCW_CS_THEQUEST.Mover
                             this.PictureBox.Location = this.location;
                         }
                         else
-                        {
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                            PictureBox.Image = JCW_CS_THEQUEST.Properties.Resources.Explosion;
-                            this.PictureBox.Visible = true;
-                            this.PictureBox.Enabled = true;
-                            int size = PictureBox.Size.Width *2;
-                            while (size >= PictureBox.Size.Width)
-                            {
-                                Thread.Sleep(10);
-                                PictureBox.Scale((float)1.1);
-                                PictureBox.Location = location;
-                                PictureBox.Update();
-                            }
-                            this.PictureBox.Visible = false;
-                            this.PictureBox.Enabled = false;
-                        }
+                           Explosion();
                         break;
                 }
                 foreach (Enemy enemy in game.Enemies)
                 {
                     if (NearBy(enemy.Location, location, Range))
                     {
-                        this.PictureBox.Visible = false;
-                        this.PictureBox.Enabled = false;
-                        PictureBox.Image = JCW_CS_THEQUEST.Properties.Resources.Explosion;
-                        this.PictureBox.Visible = true;
-                        this.PictureBox.Enabled = true;
-                        int size = PictureBox.Size.Width * 2;
-                        while (size >= PictureBox.Size.Width)
-                        {
-                            Thread.Sleep(10);
-                            PictureBox.Scale((float)1.1);
-                            PictureBox.Location = location;
-                            PictureBox.Update();
-                        }
-                        this.PictureBox.Visible = false;
-                        this.PictureBox.Enabled = false;
+                        Explosion();
                         enemy.Hit(Damage);
                     }
                 }
