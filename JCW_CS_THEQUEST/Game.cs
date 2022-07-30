@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using System.Drawing;
+using JCW_CS_THEQUEST.Mover;
 
 namespace JCW_CS_THEQUEST
 {

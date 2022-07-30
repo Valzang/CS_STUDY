@@ -53,7 +53,10 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Game.cs" />
-    <Compile Include="Mover.cs" />
+    <Compile Include="Mover\Enemy.cs" />
+    <Compile Include="Mover\Mover.cs" />
+    <Compile Include="Mover\Player.cs" />
+    <Compile Include="Mover\Weapon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
