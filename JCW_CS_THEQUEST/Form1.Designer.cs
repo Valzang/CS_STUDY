@@ -49,9 +49,6 @@ namespace JCW_CS_THEQUEST
             this.label_Ghost = new System.Windows.Forms.Label();
             this.label_Bat = new System.Windows.Forms.Label();
             this.label_Player = new System.Windows.Forms.Label();
-            this.pictureBox_Shield = new System.Windows.Forms.PictureBox();
-            this.pictureBox_Quiver = new System.Windows.Forms.PictureBox();
-            this.pictureBox_Wizard = new System.Windows.Forms.PictureBox();
             this.pictureBox_Ghoul = new System.Windows.Forms.PictureBox();
             this.pictureBox_Mace = new System.Windows.Forms.PictureBox();
             this.pictureBox_Potion_Red = new System.Windows.Forms.PictureBox();
@@ -59,24 +56,20 @@ namespace JCW_CS_THEQUEST
             this.pictureBox_Bow = new System.Windows.Forms.PictureBox();
             this.pictureBox_Ghost = new System.Windows.Forms.PictureBox();
             this.pictureBox_Bomb = new System.Windows.Forms.PictureBox();
-            this.pictureBox_Battleaxe = new System.Windows.Forms.PictureBox();
             this.pictureBox_Sword = new System.Windows.Forms.PictureBox();
             this.pictureBox_Player = new System.Windows.Forms.PictureBox();
             this.pictureBox_Bat = new System.Windows.Forms.PictureBox();
             this.pictureBox_Equip_Sword = new System.Windows.Forms.PictureBox();
-            this.pictureBox_Equip_Potion_Blu = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Equip_Potion_Blue = new System.Windows.Forms.PictureBox();
             this.pictureBox_Equip_Bow = new System.Windows.Forms.PictureBox();
             this.pictureBox_Equip_Potion_Red = new System.Windows.Forms.PictureBox();
             this.pictureBox_Equip_Mace = new System.Windows.Forms.PictureBox();
             this.pictureBox_Equip_Battleaxe = new System.Windows.Forms.PictureBox();
-            this.pictureBox_Equip_Quiver = new System.Windows.Forms.PictureBox();
-            this.pictureBox_Equip_Shield = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Equip_Bomb = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Explosion = new System.Windows.Forms.PictureBox();
             this.groupBox_Move.SuspendLayout();
             this.groupBox_Attack.SuspendLayout();
             this.Character_Point.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Shield)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Quiver)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Wizard)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Ghoul)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Mace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Potion_Red)).BeginInit();
@@ -84,18 +77,17 @@ namespace JCW_CS_THEQUEST
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Bow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Ghost)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Bomb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Battleaxe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Sword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Bat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Sword)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Potion_Blu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Potion_Blue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Bow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Potion_Red)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Mace)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Battleaxe)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Quiver)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Shield)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Bomb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Explosion)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox_Move
@@ -316,42 +308,6 @@ namespace JCW_CS_THEQUEST
             this.label_Player.TabIndex = 0;
             this.label_Player.Text = "Player";
             // 
-            // pictureBox_Shield
-            // 
-            this.pictureBox_Shield.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Shield.Image = global::JCW_CS_THEQUEST.Properties.Resources.shield;
-            this.pictureBox_Shield.Location = new System.Drawing.Point(436, 101);
-            this.pictureBox_Shield.Name = "pictureBox_Shield";
-            this.pictureBox_Shield.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox_Shield.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Shield.TabIndex = 17;
-            this.pictureBox_Shield.TabStop = false;
-            this.pictureBox_Shield.Visible = false;
-            // 
-            // pictureBox_Quiver
-            // 
-            this.pictureBox_Quiver.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Quiver.Image = global::JCW_CS_THEQUEST.Properties.Resources.quiver;
-            this.pictureBox_Quiver.Location = new System.Drawing.Point(472, 101);
-            this.pictureBox_Quiver.Name = "pictureBox_Quiver";
-            this.pictureBox_Quiver.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox_Quiver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Quiver.TabIndex = 16;
-            this.pictureBox_Quiver.TabStop = false;
-            this.pictureBox_Quiver.Visible = false;
-            // 
-            // pictureBox_Wizard
-            // 
-            this.pictureBox_Wizard.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Wizard.Image = global::JCW_CS_THEQUEST.Properties.Resources.wizard;
-            this.pictureBox_Wizard.Location = new System.Drawing.Point(472, 65);
-            this.pictureBox_Wizard.Name = "pictureBox_Wizard";
-            this.pictureBox_Wizard.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox_Wizard.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Wizard.TabIndex = 15;
-            this.pictureBox_Wizard.TabStop = false;
-            this.pictureBox_Wizard.Visible = false;
-            // 
             // pictureBox_Ghoul
             // 
             this.pictureBox_Ghoul.BackColor = System.Drawing.Color.Transparent;
@@ -436,18 +392,6 @@ namespace JCW_CS_THEQUEST
             this.pictureBox_Bomb.TabStop = false;
             this.pictureBox_Bomb.Visible = false;
             // 
-            // pictureBox_Battleaxe
-            // 
-            this.pictureBox_Battleaxe.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Battleaxe.Image = global::JCW_CS_THEQUEST.Properties.Resources.battleaxe;
-            this.pictureBox_Battleaxe.Location = new System.Drawing.Point(184, 65);
-            this.pictureBox_Battleaxe.Name = "pictureBox_Battleaxe";
-            this.pictureBox_Battleaxe.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox_Battleaxe.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox_Battleaxe.TabIndex = 7;
-            this.pictureBox_Battleaxe.TabStop = false;
-            this.pictureBox_Battleaxe.Visible = false;
-            // 
             // pictureBox_Sword
             // 
             this.pictureBox_Sword.BackColor = System.Drawing.Color.Transparent;
@@ -496,30 +440,33 @@ namespace JCW_CS_THEQUEST
             this.pictureBox_Equip_Sword.TabIndex = 19;
             this.pictureBox_Equip_Sword.TabStop = false;
             this.pictureBox_Equip_Sword.Visible = false;
+            this.pictureBox_Equip_Sword.Click += new System.EventHandler(this.pictureBox_Equip_Sword_Click);
             // 
-            // pictureBox_Equip_Potion_Blu
+            // pictureBox_Equip_Potion_Blue
             // 
-            this.pictureBox_Equip_Potion_Blu.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Equip_Potion_Blu.Enabled = false;
-            this.pictureBox_Equip_Potion_Blu.Image = global::JCW_CS_THEQUEST.Properties.Resources.potion_blue;
-            this.pictureBox_Equip_Potion_Blu.Location = new System.Drawing.Point(468, 317);
-            this.pictureBox_Equip_Potion_Blu.Name = "pictureBox_Equip_Potion_Blu";
-            this.pictureBox_Equip_Potion_Blu.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox_Equip_Potion_Blu.TabIndex = 20;
-            this.pictureBox_Equip_Potion_Blu.TabStop = false;
-            this.pictureBox_Equip_Potion_Blu.Visible = false;
+            this.pictureBox_Equip_Potion_Blue.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_Equip_Potion_Blue.Enabled = false;
+            this.pictureBox_Equip_Potion_Blue.Image = global::JCW_CS_THEQUEST.Properties.Resources.potion_blue;
+            this.pictureBox_Equip_Potion_Blue.Location = new System.Drawing.Point(468, 317);
+            this.pictureBox_Equip_Potion_Blue.Name = "pictureBox_Equip_Potion_Blue";
+            this.pictureBox_Equip_Potion_Blue.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox_Equip_Potion_Blue.TabIndex = 20;
+            this.pictureBox_Equip_Potion_Blue.TabStop = false;
+            this.pictureBox_Equip_Potion_Blue.Visible = false;
+            this.pictureBox_Equip_Potion_Blue.Click += new System.EventHandler(this.pictureBox_Equip_Potion_Blu_Click);
             // 
             // pictureBox_Equip_Bow
             // 
             this.pictureBox_Equip_Bow.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_Equip_Bow.Enabled = false;
             this.pictureBox_Equip_Bow.Image = global::JCW_CS_THEQUEST.Properties.Resources.bow;
-            this.pictureBox_Equip_Bow.Location = new System.Drawing.Point(188, 317);
+            this.pictureBox_Equip_Bow.Location = new System.Drawing.Point(132, 317);
             this.pictureBox_Equip_Bow.Name = "pictureBox_Equip_Bow";
             this.pictureBox_Equip_Bow.Size = new System.Drawing.Size(50, 50);
             this.pictureBox_Equip_Bow.TabIndex = 21;
             this.pictureBox_Equip_Bow.TabStop = false;
             this.pictureBox_Equip_Bow.Visible = false;
+            this.pictureBox_Equip_Bow.Click += new System.EventHandler(this.pictureBox_Equip_Bow_Click);
             // 
             // pictureBox_Equip_Potion_Red
             // 
@@ -532,54 +479,58 @@ namespace JCW_CS_THEQUEST
             this.pictureBox_Equip_Potion_Red.TabIndex = 22;
             this.pictureBox_Equip_Potion_Red.TabStop = false;
             this.pictureBox_Equip_Potion_Red.Visible = false;
+            this.pictureBox_Equip_Potion_Red.Click += new System.EventHandler(this.pictureBox_Equip_Potion_Red_Click);
             // 
             // pictureBox_Equip_Mace
             // 
             this.pictureBox_Equip_Mace.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_Equip_Mace.Enabled = false;
             this.pictureBox_Equip_Mace.Image = global::JCW_CS_THEQUEST.Properties.Resources.mace;
-            this.pictureBox_Equip_Mace.Location = new System.Drawing.Point(300, 317);
+            this.pictureBox_Equip_Mace.Location = new System.Drawing.Point(188, 317);
             this.pictureBox_Equip_Mace.Name = "pictureBox_Equip_Mace";
             this.pictureBox_Equip_Mace.Size = new System.Drawing.Size(50, 50);
             this.pictureBox_Equip_Mace.TabIndex = 23;
             this.pictureBox_Equip_Mace.TabStop = false;
             this.pictureBox_Equip_Mace.Visible = false;
+            this.pictureBox_Equip_Mace.Click += new System.EventHandler(this.pictureBox_Equip_Mace_Click);
             // 
             // pictureBox_Equip_Battleaxe
             // 
             this.pictureBox_Equip_Battleaxe.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_Equip_Battleaxe.Enabled = false;
             this.pictureBox_Equip_Battleaxe.Image = global::JCW_CS_THEQUEST.Properties.Resources.battleaxe;
-            this.pictureBox_Equip_Battleaxe.Location = new System.Drawing.Point(356, 317);
+            this.pictureBox_Equip_Battleaxe.Location = new System.Drawing.Point(300, 317);
             this.pictureBox_Equip_Battleaxe.Name = "pictureBox_Equip_Battleaxe";
             this.pictureBox_Equip_Battleaxe.Size = new System.Drawing.Size(50, 50);
             this.pictureBox_Equip_Battleaxe.TabIndex = 24;
             this.pictureBox_Equip_Battleaxe.TabStop = false;
             this.pictureBox_Equip_Battleaxe.Visible = false;
+            this.pictureBox_Equip_Battleaxe.Click += new System.EventHandler(this.pictureBox_Equip_Battleaxe_Click);
             // 
-            // pictureBox_Equip_Quiver
+            // pictureBox_Equip_Bomb
             // 
-            this.pictureBox_Equip_Quiver.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Equip_Quiver.Enabled = false;
-            this.pictureBox_Equip_Quiver.Image = global::JCW_CS_THEQUEST.Properties.Resources.quiver;
-            this.pictureBox_Equip_Quiver.Location = new System.Drawing.Point(244, 317);
-            this.pictureBox_Equip_Quiver.Name = "pictureBox_Equip_Quiver";
-            this.pictureBox_Equip_Quiver.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox_Equip_Quiver.TabIndex = 25;
-            this.pictureBox_Equip_Quiver.TabStop = false;
-            this.pictureBox_Equip_Quiver.Visible = false;
+            this.pictureBox_Equip_Bomb.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_Equip_Bomb.Enabled = false;
+            this.pictureBox_Equip_Bomb.Image = global::JCW_CS_THEQUEST.Properties.Resources.bomb;
+            this.pictureBox_Equip_Bomb.Location = new System.Drawing.Point(356, 317);
+            this.pictureBox_Equip_Bomb.Name = "pictureBox_Equip_Bomb";
+            this.pictureBox_Equip_Bomb.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox_Equip_Bomb.TabIndex = 26;
+            this.pictureBox_Equip_Bomb.TabStop = false;
+            this.pictureBox_Equip_Bomb.Visible = false;
+            this.pictureBox_Equip_Bomb.Click += new System.EventHandler(this.pictureBox_Equip_Bomb_Click_1);
             // 
-            // pictureBox_Equip_Shield
+            // pictureBox_Explosion
             // 
-            this.pictureBox_Equip_Shield.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_Equip_Shield.Enabled = false;
-            this.pictureBox_Equip_Shield.Image = global::JCW_CS_THEQUEST.Properties.Resources.shield;
-            this.pictureBox_Equip_Shield.Location = new System.Drawing.Point(132, 317);
-            this.pictureBox_Equip_Shield.Name = "pictureBox_Equip_Shield";
-            this.pictureBox_Equip_Shield.Size = new System.Drawing.Size(50, 50);
-            this.pictureBox_Equip_Shield.TabIndex = 26;
-            this.pictureBox_Equip_Shield.TabStop = false;
-            this.pictureBox_Equip_Shield.Visible = false;
+            this.pictureBox_Explosion.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_Explosion.Image = global::JCW_CS_THEQUEST.Properties.Resources.Explosion;
+            this.pictureBox_Explosion.Location = new System.Drawing.Point(400, 124);
+            this.pictureBox_Explosion.Name = "pictureBox_Explosion";
+            this.pictureBox_Explosion.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox_Explosion.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Explosion.TabIndex = 27;
+            this.pictureBox_Explosion.TabStop = false;
+            this.pictureBox_Explosion.Visible = false;
             // 
             // Form1
             // 
@@ -588,30 +539,26 @@ namespace JCW_CS_THEQUEST
             this.BackgroundImage = global::JCW_CS_THEQUEST.Properties.Resources.dungeon600x400;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(800, 398);
-            this.Controls.Add(this.pictureBox_Equip_Shield);
-            this.Controls.Add(this.pictureBox_Equip_Quiver);
+            this.Controls.Add(this.pictureBox_Explosion);
+            this.Controls.Add(this.pictureBox_Bomb);
+            this.Controls.Add(this.pictureBox_Equip_Bomb);
             this.Controls.Add(this.pictureBox_Equip_Battleaxe);
             this.Controls.Add(this.pictureBox_Equip_Mace);
             this.Controls.Add(this.pictureBox_Equip_Potion_Red);
             this.Controls.Add(this.pictureBox_Equip_Bow);
-            this.Controls.Add(this.pictureBox_Equip_Potion_Blu);
+            this.Controls.Add(this.pictureBox_Equip_Potion_Blue);
             this.Controls.Add(this.pictureBox_Equip_Sword);
             this.Controls.Add(this.pictureBox_Player);
-            this.Controls.Add(this.pictureBox_Wizard);
             this.Controls.Add(this.pictureBox_Ghoul);
             this.Controls.Add(this.pictureBox_Potion_Red);
             this.Controls.Add(this.pictureBox_Potion_Blu);
             this.Controls.Add(this.pictureBox_Ghost);
-            this.Controls.Add(this.pictureBox_Bomb);
             this.Controls.Add(this.pictureBox_Bat);
             this.Controls.Add(this.Character_Point);
             this.Controls.Add(this.groupBox_Attack);
             this.Controls.Add(this.groupBox_Move);
-            this.Controls.Add(this.pictureBox_Shield);
-            this.Controls.Add(this.pictureBox_Quiver);
             this.Controls.Add(this.pictureBox_Mace);
             this.Controls.Add(this.pictureBox_Bow);
-            this.Controls.Add(this.pictureBox_Battleaxe);
             this.Controls.Add(this.pictureBox_Sword);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -619,9 +566,6 @@ namespace JCW_CS_THEQUEST
             this.groupBox_Attack.ResumeLayout(false);
             this.Character_Point.ResumeLayout(false);
             this.Character_Point.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Shield)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Quiver)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Wizard)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Ghoul)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Mace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Potion_Red)).EndInit();
@@ -629,18 +573,17 @@ namespace JCW_CS_THEQUEST
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Bow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Ghost)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Bomb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Battleaxe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Sword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Bat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Sword)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Potion_Blu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Potion_Blue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Bow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Potion_Red)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Mace)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Battleaxe)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Quiver)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Shield)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Equip_Bomb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Explosion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -662,7 +605,6 @@ namespace JCW_CS_THEQUEST
         private System.Windows.Forms.PictureBox pictureBox_Bat;
         private System.Windows.Forms.PictureBox pictureBox_Player;
         private System.Windows.Forms.PictureBox pictureBox_Sword;
-        private System.Windows.Forms.PictureBox pictureBox_Battleaxe;
         private System.Windows.Forms.PictureBox pictureBox_Bomb;
         private System.Windows.Forms.PictureBox pictureBox_Ghost;
         private System.Windows.Forms.PictureBox pictureBox_Bow;
@@ -670,25 +612,22 @@ namespace JCW_CS_THEQUEST
         private System.Windows.Forms.PictureBox pictureBox_Potion_Red;
         private System.Windows.Forms.PictureBox pictureBox_Mace;
         private System.Windows.Forms.PictureBox pictureBox_Ghoul;
-        private System.Windows.Forms.PictureBox pictureBox_Wizard;
-        private System.Windows.Forms.PictureBox pictureBox_Quiver;
-        private System.Windows.Forms.PictureBox pictureBox_Shield;
         private System.Windows.Forms.Label label_Ghoul;
         private System.Windows.Forms.Label label_PlayerHitPoints;
         private System.Windows.Forms.Label label_Player;
         private System.Windows.Forms.Label label_Bat;
         private System.Windows.Forms.Label label_Ghost;
         private System.Windows.Forms.PictureBox pictureBox_Equip_Sword;
-        private System.Windows.Forms.PictureBox pictureBox_Equip_Potion_Blu;
+        private System.Windows.Forms.PictureBox pictureBox_Equip_Potion_Blue;
         private System.Windows.Forms.PictureBox pictureBox_Equip_Bow;
         private System.Windows.Forms.PictureBox pictureBox_Equip_Potion_Red;
         private System.Windows.Forms.PictureBox pictureBox_Equip_Mace;
         private System.Windows.Forms.PictureBox pictureBox_Equip_Battleaxe;
-        private System.Windows.Forms.PictureBox pictureBox_Equip_Quiver;
-        private System.Windows.Forms.PictureBox pictureBox_Equip_Shield;
         private System.Windows.Forms.Label label_BatHitPoints;
         private System.Windows.Forms.Label label_GhostHitPoints;
         private System.Windows.Forms.Label label_GhoulHitPoints;
+        private System.Windows.Forms.PictureBox pictureBox_Equip_Bomb;
+        private System.Windows.Forms.PictureBox pictureBox_Explosion;
     }
 }
 

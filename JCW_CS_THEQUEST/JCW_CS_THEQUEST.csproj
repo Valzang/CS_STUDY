@@ -56,6 +56,7 @@
     <Compile Include="Mover\Enemy.cs" />
     <Compile Include="Mover\Mover.cs" />
     <Compile Include="Mover\Player.cs" />
+    <Compile Include="Mover\Potion.cs" />
     <Compile Include="Mover\Weapon.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +130,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\shield.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="graphics\Explosion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

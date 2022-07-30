@@ -33,7 +33,7 @@ namespace JCW_CS_THEQUEST
 
         // player 관련 함수===========================================================
         public Point PlayerLocation { get { return player.Location; } set { player.Location = value; } }
-        public int PlayerHitPoints { get { return player.HitPoints; } }
+        public int PlayerHitPoints { get { return player.HitPoints; } set { player.HitPoints = value; } }
         public List<string> PlayerWeapons { get { return player.Weapons; } }
         public void Equip(string weaponName)
         {
@@ -63,7 +63,26 @@ namespace JCW_CS_THEQUEST
         }
         public void PlayerUpdate()
         {
-            player.Update();
+            player.Update(); 
+            List<Weapon> PotionForDelete = new List<Weapon>();
+            foreach (Weapon weapon in player.Inventory)
+            {
+                if (weapon.Weapon_Name == "Potion_Blue"
+                    || weapon.Weapon_Name == "Potion_Red"
+                    || weapon.Weapon_Name == "Bomb")
+                {
+                    Potion potion = (Potion)weapon;
+                    if (potion.IsUsed == true)
+                    {
+                        weapon.InventoryItem.Visible = false;
+                        weapon.InventoryItem.Enabled = false;
+                        weapon.SetEquipped(false);
+                        player.Equip("");
+                        PotionForDelete.Add(weapon);
+                    }
+                }
+            }
+            player.Inventory.RemoveAll(PotionForDelete.Contains);
         }
 
         // Level 관련 함수==========================================================
@@ -78,6 +97,73 @@ namespace JCW_CS_THEQUEST
                     Enemies.Add(new Bat(this, GetRandomLocation(random)));
                     WeaponInRoom = new List<Weapon>();
                     WeaponInRoom.Add(new Sword(this, GetRandomLocation(random)));
+                    WeaponInRoom.Add(new Bomb(this, GetRandomLocation(random)));
+                    break;
+
+                case 2:
+                    foreach(Weapon weapon in WeaponInRoom)
+                    {
+                        weapon.PictureBox.Visible = false;
+                        weapon.PictureBox.Enabled = false;
+                    }
+                    foreach (Weapon weapon in player.Inventory)
+                    {
+                        weapon.PictureBox.Visible = false;
+                        weapon.PictureBox.Enabled = false;
+                        weapon.InventoryItem.Visible = false;
+                        weapon.InventoryItem.Enabled = false;
+                    }
+
+                    player.Inventory.Clear();
+                    //foreach (Enemy enemy in Enemies)
+                    //{
+                    //    enemy.PictureBox.Visible = false;
+                    //    enemy.PictureBox.Enabled = false;
+                    //}
+                    player = new Player(this, new Point(boundaries.Left, boundaries.Top + 85));
+
+                    Enemies = new List<Enemy>();
+                    Enemies.Add(new Bat(this, GetRandomLocation(random)));
+                    Enemies.Add(new Ghost(this, GetRandomLocation(random)));
+
+                    WeaponInRoom = new List<Weapon>();
+                    WeaponInRoom.Add(new Sword(this, GetRandomLocation(random)));
+                    WeaponInRoom.Add(new Bow(this, GetRandomLocation(random)));
+                    WeaponInRoom.Add(new RedPotion(this, GetRandomLocation(random)));
+                    break;
+
+                case 3:
+                    foreach (Weapon weapon in WeaponInRoom)
+                    {
+                        weapon.PictureBox.Visible = false;
+                        weapon.PictureBox.Enabled = false;
+                    }
+                    foreach (Weapon weapon in player.Inventory)
+                    {
+                        weapon.PictureBox.Visible = false;
+                        weapon.PictureBox.Enabled = false;
+                        weapon.InventoryItem.Visible = false;
+                        weapon.InventoryItem.Enabled = false;
+                    }
+                    foreach (Enemy enemy in Enemies)
+                    {
+                        enemy.PictureBox.Visible = false;
+                        enemy.PictureBox.Enabled = false;
+                    }
+                    player.Inventory.Clear();
+
+                    player = new Player(this, new Point(boundaries.Left, boundaries.Top + 85));
+
+                    Enemies = new List<Enemy>();
+                    Enemies.Add(new Bat(this, GetRandomLocation(random)));
+                    Enemies.Add(new Ghost(this, GetRandomLocation(random)));
+                    Enemies.Add(new Ghoul(this, GetRandomLocation(random)));
+
+                    WeaponInRoom = new List<Weapon>();
+                    WeaponInRoom.Add(new Mace(this, GetRandomLocation(random)));
+                    WeaponInRoom.Add(new Bow(this, GetRandomLocation(random)));
+                    WeaponInRoom.Add(new RedPotion(this, GetRandomLocation(random)));
+                    WeaponInRoom.Add(new BluePotion(this, GetRandomLocation(random)));
                     break;
             }
         }
@@ -99,8 +185,8 @@ namespace JCW_CS_THEQUEST
 
         private Point GetRandomLocation(Random random)
         {
-            return new Point((boundaries.Left+10)/10*10 + random.Next(boundaries.Right - boundaries.Left)/10 * 10,
-                (boundaries.Top+10)/10*10 + random.Next(boundaries.Bottom - boundaries.Top)/10 * 10);
+            return new Point(boundaries.Left+10 + random.Next((boundaries.Right - boundaries.Left)/10 * 10),
+                boundaries.Top + random.Next((boundaries.Bottom - boundaries.Top)/10 * 10));
         }       
 
     }    

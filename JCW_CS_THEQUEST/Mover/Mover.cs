@@ -22,7 +22,13 @@ namespace JCW_CS_THEQUEST.Mover
         // 현재 생명력================================================================
         private int hitPoints; // 0 되면 죽음
         public int HitPoints { get { return hitPoints; } set { hitPoints = value; } }
-
+        public bool Dead
+        {
+            get
+            {
+                return HitPoints <= 0;
+            }
+        }
 
         // 라벨================================================================
         protected Label label;
@@ -58,19 +64,20 @@ namespace JCW_CS_THEQUEST.Mover
         virtual public void Update()
         {
             PictureBox.Location = Location;
+            PictureBox.Update();
             Label_HitPoints.Text = hitPoints.ToString();
         }
 
         public bool NearBy(Point locationToCheck, int distance)
         {
-            return (Math.Abs(location.X - locationToCheck.X) < distance
-                && (Math.Abs(location.Y - locationToCheck.Y) < distance));
+            return (Math.Abs(location.X - locationToCheck.X) <= distance
+                && (Math.Abs(location.Y - locationToCheck.Y) <= distance));
         }
 
-        public bool NearBy(Point locationToCheck, Point PlayerLocation, int distance)
+        public bool NearBy(Point locationToCheck, Point CurrentLocation, int distance)
         {
-            return (Math.Abs(PlayerLocation.X - locationToCheck.X) < distance
-                && (Math.Abs(PlayerLocation.Y - locationToCheck.Y) < distance));
+            return (Math.Abs(CurrentLocation.X - locationToCheck.X) <= distance
+                && (Math.Abs(CurrentLocation.Y - locationToCheck.Y) <= distance));
         }
 
         // 움직이는 함수 ================================================================
@@ -123,5 +130,6 @@ namespace JCW_CS_THEQUEST.Mover
             }
             return Player_Location;
         }
+
     }
 }
