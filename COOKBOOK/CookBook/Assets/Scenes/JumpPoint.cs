@@ -20,14 +20,4 @@ public class JumpPoint
         this.deltaPosition = this.landingLocation - this.jumpLocation;
     }
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
