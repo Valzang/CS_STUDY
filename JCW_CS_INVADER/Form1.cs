@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using JCW_CS_INVADER.Object;
+
 namespace JCW_CS_INVADER
 {
     public partial class Form1 : Form
@@ -15,6 +17,8 @@ namespace JCW_CS_INVADER
         public Form1()
         {
             InitializeComponent();
+            GameObject gameObject = new GameObject();
+            gameObject.SetScreenSize(ClientRectangle);
         }
     }
 }

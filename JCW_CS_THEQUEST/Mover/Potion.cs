@@ -79,7 +79,7 @@ namespace JCW_CS_THEQUEST.Mover
             while (size >= PictureBox.Size.Width)
             {
                 Thread.Sleep(10);
-                PictureBox.Scale((float)1.1);
+                //PictureBox.Scale((float)1.1);
                 PictureBox.Location = location;
                 PictureBox.Update();
             }
