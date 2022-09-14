@@ -12,13 +12,18 @@ using JCW_CS_INVADER.Object;
 
 namespace JCW_CS_INVADER
 {
-    public partial class Form1 : Form
+    public partial class Invader : Form
     {
-        public Form1()
+        public Invader()
         {
             InitializeComponent();
             GameObject gameObject = new GameObject();
             gameObject.SetScreenSize(ClientRectangle);
+        }
+
+        private void Invader_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

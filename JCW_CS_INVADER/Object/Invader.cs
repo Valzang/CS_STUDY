@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace JCW_CS_INVADER.Object
 {
-    abstract class Invader
+    class Invader
     {
+
     }
 
     class Enemy_Star : Invader

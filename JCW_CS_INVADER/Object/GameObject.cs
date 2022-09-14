@@ -9,11 +9,11 @@ namespace JCW_CS_INVADER.Object
 {
     class GameObject
     {        
-        List<Invader> InvadersList;
-        Player curPlayer;
-        List<Shot> Missile_Player;
-        List<Shot> Missile_Invader;
-        Star TwinklingStar;
+        List<Invader> InvadersList = new List<Invader>();
+        Player curPlayer = new Player();
+        List<Shot> Missile_Player = new List<Shot>();
+        List<Shot> Missile_Invader = new List<Shot>();
+        Star TwinklingStar = new Star();
 
         // 현재 화면 크기
         Rectangle curScreenSize;
@@ -48,6 +48,12 @@ namespace JCW_CS_INVADER.Object
                     }
                 }
             }
+        }
+        public void Player_Init()
+        {
+            curPlayer.posX = curScreenSize.Width/2;
+            curPlayer.posY = curScreenSize.Height - 10;
+            
         }
     }
 }

@@ -8,5 +8,11 @@ namespace JCW_CS_INVADER.Object
 {
     class Player
     {
+        public int posX, posY;
+
+        public void Attack()
+        {
+            
+        }
     }
 }
