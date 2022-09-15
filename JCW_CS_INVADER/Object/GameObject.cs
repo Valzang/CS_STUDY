@@ -5,15 +5,40 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
+using System.Windows.Forms;
+
 namespace JCW_CS_INVADER.Object
 {
     class GameObject
-    {        
+    {
+
+        List<PictureBox> Invaders_Img;
+
+        // 적 관련
         List<Invader> InvadersList = new List<Invader>();
-        Player curPlayer = new Player();
-        List<Shot> Missile_Player = new List<Shot>();
         List<Shot> Missile_Invader = new List<Shot>();
+
         Star TwinklingStar = new Star();
+
+        // 플레이어 관련
+        Player curPlayer;
+        List<Shot> Missile_Player = new List<Shot>();
+
+
+        // 싱글톤으로 관리 =====================================
+        private static GameObject gameObject;
+        public static GameObject Instance()
+        {
+            if (gameObject == null)
+                gameObject = new GameObject();
+            return gameObject;
+        }
+
+        public void SetImg(List<PictureBox> pictureBoxes)
+        {
+            Invaders_Img = pictureBoxes;
+        }
+        // =====================================================
 
         // 현재 화면 크기
         Rectangle curScreenSize;
@@ -21,8 +46,36 @@ namespace JCW_CS_INVADER.Object
 
         int WaveCount = 0;
 
-        public void Invader_Init() 
-        { 
+        public int GetEnemyShots()
+        {
+            return Missile_Invader.Count;
+        }
+        public int GetPlayerShots()
+        {
+            return Missile_Player.Count;
+        }
+
+        public Player GetPlayer()
+        {
+            return curPlayer;
+        }
+        public List<Invader> GetEnemyList()
+        {
+            return InvadersList;
+        }
+
+        public void AddEnemyShot(Point _enemyPos)
+        {
+            Missile_Invader.Add(new EnemyShot(_enemyPos, Invaders_Img[7]));
+        }
+        public void AddPlayerShot(Point _playerPos)
+        {
+            Missile_Invader.Add(new PlayerShot(_playerPos, Invaders_Img[6]));
+        }
+
+        public void Invader_Init(List<PictureBox> _Img) 
+        {
+            Invaders_Img = _Img;
             InvadersList.Clear();             
             for (int i=0; i<5; ++i)
             {
@@ -31,19 +84,19 @@ namespace JCW_CS_INVADER.Object
                     switch(i)
                     {
                         case 0:
-                            InvadersList.Add(new Enemy_Star());
+                            InvadersList.Add(new Enemy_Star(WaveCount, Invaders_Img[i]));
                             break;
                         case 1:
-                            InvadersList.Add(new Enemy_Spaceship());
+                            InvadersList.Add(new Enemy_Spaceship(WaveCount, Invaders_Img[i]));
                             break;
                         case 2:
-                            InvadersList.Add(new Enemy_Saucer());
+                            InvadersList.Add(new Enemy_Saucer(WaveCount, Invaders_Img[i]));
                             break;
                         case 3:
-                            InvadersList.Add(new Enemy_Bug());
+                            InvadersList.Add(new Enemy_Bug(WaveCount, Invaders_Img[i]));
                             break;
                         case 4:
-                            InvadersList.Add(new Enemy_Satellite());
+                            InvadersList.Add(new Enemy_Satellite(WaveCount, Invaders_Img[i]));
                             break;
                     }
                 }
@@ -51,9 +104,8 @@ namespace JCW_CS_INVADER.Object
         }
         public void Player_Init()
         {
-            curPlayer.posX = curScreenSize.Width/2;
-            curPlayer.posY = curScreenSize.Height - 10;
-            
+            curPlayer = new Player(Invaders_Img[5]);
+            curPlayer.SetPos(curScreenSize.Width / 2, curScreenSize.Height - 10);            
         }
     }
 }

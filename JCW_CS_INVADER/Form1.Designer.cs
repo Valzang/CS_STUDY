@@ -1,7 +1,7 @@
 ﻿
 namespace JCW_CS_INVADER
 {
-    partial class Invader
+    partial class GameInvader
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -138,7 +138,7 @@ namespace JCW_CS_INVADER
             this.pictureBox_EnemyShot.TabIndex = 7;
             this.pictureBox_EnemyShot.TabStop = false;
             // 
-            // Invader
+            // GameInvader
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,9 +157,8 @@ namespace JCW_CS_INVADER
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Invader";
+            this.Name = "GameInvader";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Invader_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyStar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemySpaceship)).EndInit();

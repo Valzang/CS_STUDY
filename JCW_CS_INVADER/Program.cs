@@ -16,7 +16,7 @@ namespace JCW_CS_INVADER
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Invader());
+            Application.Run(new GameInvader());
         }
     }
 }

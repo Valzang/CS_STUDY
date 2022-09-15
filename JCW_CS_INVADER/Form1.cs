@@ -12,18 +12,23 @@ using JCW_CS_INVADER.Object;
 
 namespace JCW_CS_INVADER
 {
-    public partial class Invader : Form
+    public partial class GameInvader : Form
     {
-        public Invader()
+        public GameInvader()
         {
             InitializeComponent();
-            GameObject gameObject = new GameObject();
-            gameObject.SetScreenSize(ClientRectangle);
-        }
+            GameObject.Instance().SetScreenSize(ClientRectangle);
 
-        private void Invader_Load(object sender, EventArgs e)
-        {
-
-        }
-    }
+            List<PictureBox> invadersImg = new List<PictureBox>();
+            invadersImg.Add(pictureBox_EnemyStar);
+            invadersImg.Add(pictureBox_EnemySpaceship);
+            invadersImg.Add(pictureBox_EnemySaucer);
+            invadersImg.Add(pictureBox_EnemyBugs);
+            invadersImg.Add(pictureBox_EnemySatellite);
+            invadersImg.Add(pictureBox_Player);
+            invadersImg.Add(pictureBox_PlayerShot);
+            invadersImg.Add(pictureBox_EnemyShot);
+            GameObject.Instance().SetImg(invadersImg);
+        }                                                 
+    }                        
 }
