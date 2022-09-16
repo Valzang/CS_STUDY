@@ -7,7 +7,6 @@ namespace JCW_CS_WINDOWSFORM
 {
     public partial class Form1 : Form
     {
-        Random MyRandom = new Random();
         Greyhound[] dogs = new Greyhound[4];
         Guy[] guys = new Guy[3];
         public Form1() {

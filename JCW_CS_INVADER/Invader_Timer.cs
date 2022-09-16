@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JCW_CS_INVADER
 {
-    class Timer
+    class Invader_Timer
     {
         double startTime = 0.0f;
         double curTime = 0.0f;

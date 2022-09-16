@@ -12,23 +12,34 @@ namespace JCW_CS_INVADER.Object
     {
         public PictureBox MyPictureBox;
         protected Point position;
-        
+
+        public Mover()
+        {
+            MyPictureBox = new PictureBox();            
+        }        
 
         protected int curAttackCount = 0;
         protected int totalAttackCount = 2;
 
-        protected Timer attackTimer = new Timer();
+        protected Invader_Timer attackTimer = new Invader_Timer();
+
+        public PictureBox GetPicture()
+        {
+            return MyPictureBox;
+        }
 
         public void SetPos(int _x, int _y)
         {            
             position.X = _x;
             position.Y = _y;
+            MyPictureBox.Location = position;
         }
 
         public void SetPos(Point _pos)
         {
             position.X = _pos.X;
             position.Y = _pos.Y;
+            MyPictureBox.Location = position;
         }
 
         public Point GetPos()
@@ -44,15 +55,34 @@ namespace JCW_CS_INVADER.Object
         {
             ++curAttackCount;
         }
+
+        protected void SettingPB(PictureBox picture)
+        {
+            MyPictureBox.Image = picture.Image;
+            MyPictureBox.Size = picture.Size;
+            MyPictureBox.SizeMode = picture.SizeMode;
+            MyPictureBox.BackColor = picture.BackColor;
+        }
     }
+
+    //==========================================================================
     class Player : Mover
     {
         private int lifeCount = 2;
         private int score = 0;
+        private Point startPos;
 
-        public Player(PictureBox picture)
+        public Player(PictureBox picture, Rectangle _start)
         {
-            MyPictureBox = picture;
+            startPos.X = _start.Width / 2;
+            startPos.Y = _start.Height - 10;
+            SettingPB(picture);
+            RePos();
+        }
+
+        public void RePos()
+        {
+            SetPos(startPos);
         }
         public void SetLife(int _count)
         {
@@ -63,7 +93,7 @@ namespace JCW_CS_INVADER.Object
         {
             if (curAttackCount < totalAttackCount)
             {
-                GameObject.Instance().AddEnemyShot(GetPos());
+                GameObject.Instance().AddEnemyShot(GetPos(), this);
                 ++curAttackCount;
             }
         }

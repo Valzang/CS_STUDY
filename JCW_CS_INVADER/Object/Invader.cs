@@ -24,7 +24,7 @@ namespace JCW_CS_INVADER.Object
             {
                 if (curAttackCount < totalAttackCount)
                 {
-                    GameObject.Instance().AddEnemyShot(GetPos());
+                    GameObject.Instance().AddEnemyShot(GetPos(), this);
                     ++curAttackCount;
                     attackTimer.TimerReset();
                     attackTimer.TimerStart();
@@ -32,60 +32,61 @@ namespace JCW_CS_INVADER.Object
             }      
             attackTimer.TimerUpdate();            
         }
+
+        protected void SetAttackDefault(int _WaveCount)
+        {
+            attackTime -= (0.2f * _WaveCount);
+            totalAttackCount += _WaveCount;
+        }
     }
 
     class Enemy_Star : Invader
     {
-        public Enemy_Star(int _WaveCount, PictureBox _picture)
+        public Enemy_Star(int _WaveCount, PictureBox picture)
         {
-            attackTime -= (0.2f * _WaveCount);
-            totalAttackCount += _WaveCount;
+            SetAttackDefault(_WaveCount);
             scorePoint = 10;
-            MyPictureBox = _picture;
+            SettingPB(picture);
         }
     }
 
     class Enemy_Spaceship : Invader
     {
-        public Enemy_Spaceship(int _WaveCount, PictureBox _picture)
+        public Enemy_Spaceship(int _WaveCount, PictureBox picture)
         {
-            attackTime -= (0.2f * _WaveCount);
-            totalAttackCount += _WaveCount;
+            SetAttackDefault(_WaveCount);
             scorePoint = 20;
-            MyPictureBox = _picture;
+            SettingPB(picture);
         }
     }
 
     class Enemy_Saucer : Invader
     {
-        public Enemy_Saucer(int _WaveCount, PictureBox _picture)
+        public Enemy_Saucer(int _WaveCount, PictureBox picture)
         {
-            attackTime -= (0.2f * _WaveCount);
-            totalAttackCount += _WaveCount;
+            SetAttackDefault(_WaveCount);
             scorePoint = 30;
-            MyPictureBox = _picture;
+            SettingPB(picture);
         }
     }
 
     class Enemy_Bug : Invader
     {
-        public Enemy_Bug(int _WaveCount, PictureBox _picture)
+        public Enemy_Bug(int _WaveCount, PictureBox picture)
         {
-            attackTime -= (0.2f * _WaveCount);
-            totalAttackCount += _WaveCount;
+            SetAttackDefault(_WaveCount);
             scorePoint = 40;
-            MyPictureBox = _picture;
+            SettingPB(picture);
         }
     }
 
     class Enemy_Satellite : Invader
     {
-        public Enemy_Satellite(int _WaveCount, PictureBox _picture)
+        public Enemy_Satellite(int _WaveCount, PictureBox picture)
         {
-            attackTime -= (0.2f * _WaveCount);
-            totalAttackCount += _WaveCount;
+            SetAttackDefault(_WaveCount);
             scorePoint = 50;
-            MyPictureBox = _picture;
+            SettingPB(picture);
         }
     }
 }

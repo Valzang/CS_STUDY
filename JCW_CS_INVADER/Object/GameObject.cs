@@ -18,10 +18,11 @@ namespace JCW_CS_INVADER.Object
         List<Invader> InvadersList = new List<Invader>();
         List<Shot> Missile_Invader = new List<Shot>();
 
-        Star TwinklingStar = new Star();
+        // 반짝별
+        List<Star> TwinklingStar = new List<Star>();
 
         // 플레이어 관련
-        Player curPlayer;
+        Player curPlayer = null;
         List<Shot> Missile_Player = new List<Shot>();
 
 
@@ -55,6 +56,11 @@ namespace JCW_CS_INVADER.Object
             return Missile_Player.Count;
         }
 
+        public List<Star> GetStars()
+        {
+            return TwinklingStar;
+        }
+
         public Player GetPlayer()
         {
             return curPlayer;
@@ -64,13 +70,13 @@ namespace JCW_CS_INVADER.Object
             return InvadersList;
         }
 
-        public void AddEnemyShot(Point _enemyPos)
+        public void AddEnemyShot(Point _enemyPos, Mover _shooter)
         {
-            Missile_Invader.Add(new EnemyShot(_enemyPos, Invaders_Img[7]));
+            Missile_Invader.Add(new EnemyShot(_enemyPos, Invaders_Img[7], _shooter));
         }
-        public void AddPlayerShot(Point _playerPos)
+        public void AddPlayerShot(Point _playerPos, Mover _shooter)
         {
-            Missile_Invader.Add(new PlayerShot(_playerPos, Invaders_Img[6]));
+            Missile_Invader.Add(new PlayerShot(_playerPos, Invaders_Img[6], _shooter));
         }
 
         public void Invader_Init(List<PictureBox> _Img) 
@@ -104,8 +110,22 @@ namespace JCW_CS_INVADER.Object
         }
         public void Player_Init()
         {
-            curPlayer = new Player(Invaders_Img[5]);
-            curPlayer.SetPos(curScreenSize.Width / 2, curScreenSize.Height - 10);            
+            curPlayer = new Player(Invaders_Img[5], curScreenSize);          
+        }
+
+        public void Star_Init()
+        {
+            for (int i=0 ; i<100 ; ++i)
+                TwinklingStar.Add(new Star(curScreenSize, Invaders_Img[8]));
+        }
+
+        public void Twinkle()
+        {
+            TwinklingStar.Clear();
+            for (int i=0 ; i<5 ; ++i)
+            {
+                TwinklingStar.Add(new Star(curScreenSize, Invaders_Img[8]));
+            }            
         }
     }
 }

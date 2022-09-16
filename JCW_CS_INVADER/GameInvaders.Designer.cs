@@ -1,7 +1,7 @@
 ﻿
 namespace JCW_CS_INVADER
 {
-    partial class GameInvader
+    partial class GameInvaders
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -30,6 +30,7 @@ namespace JCW_CS_INVADER
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameInvaders));
             this.animationTimer = new System.Windows.Forms.Timer(this.components);
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.pictureBox_Player = new System.Windows.Forms.PictureBox();
@@ -40,6 +41,7 @@ namespace JCW_CS_INVADER
             this.pictureBox_EnemySatellite = new System.Windows.Forms.PictureBox();
             this.pictureBox_PlayerShot = new System.Windows.Forms.PictureBox();
             this.pictureBox_EnemyShot = new System.Windows.Forms.PictureBox();
+            this.pictureBox_TwinklingStar = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemySpaceship)).BeginInit();
@@ -48,18 +50,32 @@ namespace JCW_CS_INVADER
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemySatellite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerShot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyShot)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TwinklingStar)).BeginInit();
             this.SuspendLayout();
+            // 
+            // animationTimer
+            // 
+            this.animationTimer.Interval = 33;
+            this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
+            // 
+            // gameTimer
+            // 
+            this.gameTimer.Enabled = true;
+            this.gameTimer.Interval = 10;
+            this.gameTimer.Tick += new System.EventHandler(this.gameTimer_Tick);
             // 
             // pictureBox_Player
             // 
             this.pictureBox_Player.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_Player.Enabled = false;
             this.pictureBox_Player.Image = global::JCW_CS_INVADER.Properties.Resources.player;
-            this.pictureBox_Player.Location = new System.Drawing.Point(385, 378);
+            this.pictureBox_Player.Location = new System.Drawing.Point(768, 408);
             this.pictureBox_Player.Name = "pictureBox_Player";
             this.pictureBox_Player.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Player.TabIndex = 0;
             this.pictureBox_Player.TabStop = false;
+            this.pictureBox_Player.Visible = false;
             // 
             // pictureBox_EnemyStar
             // 
@@ -138,12 +154,26 @@ namespace JCW_CS_INVADER
             this.pictureBox_EnemyShot.TabIndex = 7;
             this.pictureBox_EnemyShot.TabStop = false;
             // 
-            // GameInvader
+            // pictureBox_TwinklingStar
+            // 
+            this.pictureBox_TwinklingStar.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_TwinklingStar.Enabled = false;
+            this.pictureBox_TwinklingStar.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_TwinklingStar.Image")));
+            this.pictureBox_TwinklingStar.Location = new System.Drawing.Point(778, 12);
+            this.pictureBox_TwinklingStar.Name = "pictureBox_TwinklingStar";
+            this.pictureBox_TwinklingStar.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_TwinklingStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_TwinklingStar.TabIndex = 8;
+            this.pictureBox_TwinklingStar.TabStop = false;
+            this.pictureBox_TwinklingStar.Visible = false;
+            // 
+            // GameInvaders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::JCW_CS_INVADER.Properties.Resources.space;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.pictureBox_TwinklingStar);
             this.Controls.Add(this.pictureBox_EnemyShot);
             this.Controls.Add(this.pictureBox_PlayerShot);
             this.Controls.Add(this.pictureBox_EnemySatellite);
@@ -157,8 +187,8 @@ namespace JCW_CS_INVADER
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "GameInvader";
-            this.Text = "Form1";
+            this.Name = "GameInvaders";
+            this.Text = "GameInvaders";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Player)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyStar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemySpaceship)).EndInit();
@@ -167,6 +197,7 @@ namespace JCW_CS_INVADER
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemySatellite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerShot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyShot)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TwinklingStar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,6 +214,7 @@ namespace JCW_CS_INVADER
         private System.Windows.Forms.PictureBox pictureBox_EnemySatellite;
         private System.Windows.Forms.PictureBox pictureBox_PlayerShot;
         private System.Windows.Forms.PictureBox pictureBox_EnemyShot;
+        private System.Windows.Forms.PictureBox pictureBox_TwinklingStar;
     }
 }
 

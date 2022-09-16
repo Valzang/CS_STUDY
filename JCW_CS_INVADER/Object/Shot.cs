@@ -12,6 +12,7 @@ namespace JCW_CS_INVADER.Object
     abstract class Shot : Mover
     {
         protected Mover shooter;
+
         ~Shot()
         {
             shooter.IncreaseAttackCount();
@@ -22,11 +23,12 @@ namespace JCW_CS_INVADER.Object
 
     class EnemyShot : Shot
     {
-        public EnemyShot(Point _pos, PictureBox picture)
+        public EnemyShot(Point _pos, PictureBox picture, Mover _shooter)
         {
+            shooter = _shooter;
             SetPos(_pos);
             shooter.DecreaseAttackCount();
-            MyPictureBox = picture;
+            SettingPB(picture);
         }
 
         public override bool Move()
@@ -46,11 +48,12 @@ namespace JCW_CS_INVADER.Object
 
     class PlayerShot : Shot
     {
-        public PlayerShot(Point _pos, PictureBox picture)
+        public PlayerShot(Point _pos, PictureBox picture, Mover _shooter)
         {
+            shooter = _shooter;
             SetPos(_pos);
             shooter.DecreaseAttackCount();
-            MyPictureBox = picture;
+            SettingPB(picture);
         }
         public override bool Move()
         {
