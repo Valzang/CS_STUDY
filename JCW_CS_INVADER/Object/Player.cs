@@ -12,6 +12,8 @@ namespace JCW_CS_INVADER.Object
     {
         public PictureBox MyPictureBox;
         protected Point position;
+        public bool isDead = false;
+        protected int speed = 10;
 
         public Mover()
         {
@@ -28,18 +30,21 @@ namespace JCW_CS_INVADER.Object
             return MyPictureBox;
         }
 
+        public void SetImgPos()
+        {
+            MyPictureBox.Location = position;
+        }
+
         public void SetPos(int _x, int _y)
         {            
             position.X = _x;
             position.Y = _y;
-            MyPictureBox.Location = position;
         }
 
         public void SetPos(Point _pos)
         {
             position.X = _pos.X;
             position.Y = _pos.Y;
-            MyPictureBox.Location = position;
         }
 
         public Point GetPos()
@@ -63,19 +68,48 @@ namespace JCW_CS_INVADER.Object
             MyPictureBox.SizeMode = picture.SizeMode;
             MyPictureBox.BackColor = picture.BackColor;
         }
+
+        virtual public void GetDamage()
+        {
+            isDead = true;
+        }
+
+        public bool Dead()
+        {
+            return isDead;
+        }
+
+        virtual public void Move(Direction dir)
+        {
+            Point curPos = GetPos();
+            switch(dir)
+            {
+                case Direction.Left:
+                    SetPos(curPos.X - speed, curPos.Y);
+                    break;
+                case Direction.Right:
+                    SetPos(curPos.X + speed, curPos.Y);
+                    break;
+                case Direction.Up:
+                    SetPos(curPos.X, curPos.Y - speed);
+                    break;
+                case Direction.Down:
+                    SetPos(curPos.X, curPos.Y + speed);
+                    break;
+            }
+        }
     }
 
     //==========================================================================
     class Player : Mover
     {
         private int lifeCount = 2;
-        private int score = 0;
         private Point startPos;
 
         public Player(PictureBox picture, Rectangle _start)
         {
             startPos.X = _start.Width / 2;
-            startPos.Y = _start.Height - 10;
+            startPos.Y = _start.Height - 30;
             SettingPB(picture);
             RePos();
         }
@@ -84,23 +118,34 @@ namespace JCW_CS_INVADER.Object
         {
             SetPos(startPos);
         }
-        public void SetLife(int _count)
-        {
-            lifeCount = _count;
-        }
-
         public void Attack()
         {
             if (curAttackCount < totalAttackCount)
             {
-                GameObject.Instance().AddEnemyShot(GetPos(), this);
+                GameObject.Instance().AddPlayerShot(GetPos(), this);
                 ++curAttackCount;
             }
         }
 
-        public void GetScore(int _point)
+        override public void GetDamage()
         {
-            score += _point;
+            --lifeCount;
+            if (lifeCount < 0)
+                isDead = true;
+        }
+
+        override public void Move(Direction dir)
+        {
+            Point curPos = GetPos();
+            switch (dir)
+            {
+                case Direction.Left:
+                    SetPos(curPos.X - 20, curPos.Y);
+                    break;
+                case Direction.Right:
+                    SetPos(curPos.X + 20, curPos.Y);
+                    break;
+            }
         }
     }
 }

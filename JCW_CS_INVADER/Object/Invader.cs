@@ -12,9 +12,9 @@ namespace JCW_CS_INVADER.Object
         protected float attackTime = 5.0f;
         protected int scorePoint = 0;
 
-        public void GiveScore(Player _curPlayer)
+        public int GetScore()
         {
-            _curPlayer.GetScore(scorePoint);
+            return scorePoint;
         }
 
         public void Attack()
@@ -37,6 +37,7 @@ namespace JCW_CS_INVADER.Object
         {
             attackTime -= (0.2f * _WaveCount);
             totalAttackCount += _WaveCount;
+            speed += (_WaveCount * 2);
         }
     }
 

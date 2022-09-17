@@ -116,5 +116,59 @@
   <ItemGroup>
     <None Include="Images\TwinklingStar.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bug2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bug3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bug4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\flyingsaucer2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\flyingsaucer3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\flyingsaucer4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\satellite2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\satellite3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\satellite4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\spaceship2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\spaceship3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\spaceship4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\star2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\star3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\star4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\watchit2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\watchit3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\watchit4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

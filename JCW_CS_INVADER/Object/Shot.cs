@@ -13,12 +13,20 @@ namespace JCW_CS_INVADER.Object
     {
         protected Mover shooter;
 
-        ~Shot()
+        public Shot()
         {
-            shooter.IncreaseAttackCount();
+            speed = 40;
         }
-
         abstract public bool Move();
+
+        public bool Hit(Point _other)
+        {
+            if (_other.X - 15 < position.X && position.X < _other.X + 15
+                && _other.Y - 15 < position.Y && position.Y < _other.Y + 15)
+                return true;
+            else
+                return false;
+        }
     }
 
     class EnemyShot : Shot
@@ -35,12 +43,9 @@ namespace JCW_CS_INVADER.Object
         {
             Point curPlayerPos = GameObject.Instance().GetPlayer().GetPos();
             Point curPos = GetPos();
-            if (curPlayerPos.X == curPos.X
-                && curPlayerPos.Y == curPos.Y)
-            {
+            SetPos(curPos.X, curPos.Y + 10);
+            if (curPos.Y > 420)
                 return true;
-            }
-            SetPos(curPos.X, curPos.Y - 10);
             return false;
         }
 
@@ -52,22 +57,14 @@ namespace JCW_CS_INVADER.Object
         {
             shooter = _shooter;
             SetPos(_pos);
-            shooter.DecreaseAttackCount();
             SettingPB(picture);
         }
         public override bool Move()
         {
-            List<Invader> invaders = GameObject.Instance().GetEnemyList();
-            Point curPos = GetPos();            
-            for (int i=0; i<invaders.Count; ++i)
-            {
-                Point EnemyPos = invaders[i].GetPos();
-                if (EnemyPos.X == curPos.X && EnemyPos.Y == curPos.Y)
-                {
-                    return true;
-                }
-            }
-            SetPos(curPos.Y, curPos.Y + 10);
+            Point curPos = GetPos();                        
+            SetPos(curPos.X, curPos.Y - 10);
+            if (curPos.Y < 0)
+                return true;
             return false;
         }
     }

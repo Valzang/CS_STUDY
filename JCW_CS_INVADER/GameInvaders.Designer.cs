@@ -55,6 +55,7 @@ namespace JCW_CS_INVADER
             // 
             // animationTimer
             // 
+            this.animationTimer.Enabled = true;
             this.animationTimer.Interval = 33;
             this.animationTimer.Tick += new System.EventHandler(this.animationTimer_Tick);
             // 
@@ -69,7 +70,7 @@ namespace JCW_CS_INVADER
             this.pictureBox_Player.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_Player.Enabled = false;
             this.pictureBox_Player.Image = global::JCW_CS_INVADER.Properties.Resources.player;
-            this.pictureBox_Player.Location = new System.Drawing.Point(768, 408);
+            this.pictureBox_Player.Location = new System.Drawing.Point(770, 420);
             this.pictureBox_Player.Name = "pictureBox_Player";
             this.pictureBox_Player.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_Player.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -80,57 +81,67 @@ namespace JCW_CS_INVADER
             // pictureBox_EnemyStar
             // 
             this.pictureBox_EnemyStar.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_EnemyStar.Enabled = false;
             this.pictureBox_EnemyStar.Image = global::JCW_CS_INVADER.Properties.Resources.star1;
-            this.pictureBox_EnemyStar.Location = new System.Drawing.Point(385, 210);
+            this.pictureBox_EnemyStar.Location = new System.Drawing.Point(630, 200);
             this.pictureBox_EnemyStar.Name = "pictureBox_EnemyStar";
             this.pictureBox_EnemyStar.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_EnemyStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_EnemyStar.TabIndex = 1;
             this.pictureBox_EnemyStar.TabStop = false;
+            this.pictureBox_EnemyStar.Visible = false;
             // 
             // pictureBox_EnemySpaceship
             // 
             this.pictureBox_EnemySpaceship.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_EnemySpaceship.Enabled = false;
             this.pictureBox_EnemySpaceship.Image = global::JCW_CS_INVADER.Properties.Resources.spaceship1;
-            this.pictureBox_EnemySpaceship.Location = new System.Drawing.Point(430, 210);
+            this.pictureBox_EnemySpaceship.Location = new System.Drawing.Point(630, 150);
             this.pictureBox_EnemySpaceship.Name = "pictureBox_EnemySpaceship";
             this.pictureBox_EnemySpaceship.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_EnemySpaceship.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_EnemySpaceship.TabIndex = 2;
             this.pictureBox_EnemySpaceship.TabStop = false;
+            this.pictureBox_EnemySpaceship.Visible = false;
             // 
             // pictureBox_EnemySaucer
             // 
             this.pictureBox_EnemySaucer.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_EnemySaucer.Enabled = false;
             this.pictureBox_EnemySaucer.Image = global::JCW_CS_INVADER.Properties.Resources.flyingsaucer1;
-            this.pictureBox_EnemySaucer.Location = new System.Drawing.Point(476, 210);
+            this.pictureBox_EnemySaucer.Location = new System.Drawing.Point(630, 100);
             this.pictureBox_EnemySaucer.Name = "pictureBox_EnemySaucer";
             this.pictureBox_EnemySaucer.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_EnemySaucer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_EnemySaucer.TabIndex = 3;
             this.pictureBox_EnemySaucer.TabStop = false;
+            this.pictureBox_EnemySaucer.Visible = false;
             // 
             // pictureBox_EnemyBugs
             // 
             this.pictureBox_EnemyBugs.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_EnemyBugs.Enabled = false;
             this.pictureBox_EnemyBugs.Image = global::JCW_CS_INVADER.Properties.Resources.bug1;
-            this.pictureBox_EnemyBugs.Location = new System.Drawing.Point(530, 210);
+            this.pictureBox_EnemyBugs.Location = new System.Drawing.Point(630, 50);
             this.pictureBox_EnemyBugs.Name = "pictureBox_EnemyBugs";
             this.pictureBox_EnemyBugs.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_EnemyBugs.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_EnemyBugs.TabIndex = 4;
             this.pictureBox_EnemyBugs.TabStop = false;
+            this.pictureBox_EnemyBugs.Visible = false;
             // 
             // pictureBox_EnemySatellite
             // 
             this.pictureBox_EnemySatellite.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_EnemySatellite.Enabled = false;
             this.pictureBox_EnemySatellite.Image = global::JCW_CS_INVADER.Properties.Resources.satellite1;
-            this.pictureBox_EnemySatellite.Location = new System.Drawing.Point(577, 210);
+            this.pictureBox_EnemySatellite.Location = new System.Drawing.Point(630, 0);
             this.pictureBox_EnemySatellite.Name = "pictureBox_EnemySatellite";
             this.pictureBox_EnemySatellite.Size = new System.Drawing.Size(30, 30);
             this.pictureBox_EnemySatellite.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_EnemySatellite.TabIndex = 5;
             this.pictureBox_EnemySatellite.TabStop = false;
+            this.pictureBox_EnemySatellite.Visible = false;
             // 
             // pictureBox_PlayerShot
             // 
@@ -159,9 +170,9 @@ namespace JCW_CS_INVADER
             this.pictureBox_TwinklingStar.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_TwinklingStar.Enabled = false;
             this.pictureBox_TwinklingStar.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox_TwinklingStar.Image")));
-            this.pictureBox_TwinklingStar.Location = new System.Drawing.Point(778, 12);
+            this.pictureBox_TwinklingStar.Location = new System.Drawing.Point(788, 392);
             this.pictureBox_TwinklingStar.Name = "pictureBox_TwinklingStar";
-            this.pictureBox_TwinklingStar.Size = new System.Drawing.Size(20, 20);
+            this.pictureBox_TwinklingStar.Size = new System.Drawing.Size(10, 10);
             this.pictureBox_TwinklingStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_TwinklingStar.TabIndex = 8;
             this.pictureBox_TwinklingStar.TabStop = false;
