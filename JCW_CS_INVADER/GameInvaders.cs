@@ -28,6 +28,15 @@ namespace JCW_CS_INVADER
         List<Shot> PlayerShots;
         Player curPlayer;
         List<Star> stars;
+        Label scoreLabel;
+        Label scoreTitle;
+        List<PictureBox> playerLife = new List<PictureBox>();
+        int lifeCount;
+
+        int moveCount = 0;
+        int waveCount = 0;
+        Label gameOverTitle;
+        Label gameOverDesc;
 
         List<Keys> keyPressed = new List<Keys>();
         int score = 0;
@@ -39,30 +48,11 @@ namespace JCW_CS_INVADER
             KeyPreview = true;
             InitializeComponent();
             GameObject.Instance().SetScreenSize(ClientRectangle);
-            ImgAdd();
-            GameObject.Instance().SetImg(invadersImg);
+            scoreTitle = Label_ScoreTitle;
+            scoreLabel = Label_ScorePoint;
 
-            GameObject.Instance().Invader_Init(invadersImg);
-            List<Invader> invaders = GameObject.Instance().GetEnemyList();
-            foreach(Invader invader in invaders)
-            {
-                Controls.Add(invader.GetPicture());
-            }
+            SetStart();
 
-            GameObject.Instance().Player_Init();
-            Controls.Add(GameObject.Instance().GetPlayer().GetPicture());
-
-            GameObject.Instance().Star_Init();
-
-            curPlayer = GameObject.Instance().GetPlayer();
-            invaderList = GameObject.Instance().GetEnemyList();
-            invaderShots = GameObject.Instance().GetEnemyShots();
-            PlayerShots = GameObject.Instance().GetPlayerShots();
-            stars = GameObject.Instance().GetStars();
-
-            this.KeyDown += new KeyEventHandler(GameInvaders_KeyDown);
-            this.KeyUp += new KeyEventHandler(GameInvaders_KeyUp);
-            
         }       
 
         // 로직
@@ -73,7 +63,11 @@ namespace JCW_CS_INVADER
             { 
                 gameOver = true;
                 // 임시로 종료
-                Application.Exit();
+                Invalidate();
+                gameOverTitle.Visible = true;
+                gameOverDesc.Visible = true;
+                animationTimer.Stop();
+                gameTimer.Stop();
                 return;
             }
             // 탄 / 적 / 플레이어 움직임
@@ -99,7 +93,8 @@ namespace JCW_CS_INVADER
                 if(invaderShots[i].Move())
                 {
                     this.Controls.Remove(invaderShots[i].MyPictureBox);
-                    invaderShots.RemoveAt(i);
+                    invaderShots[i].GetShooter().DecreaseAttackCount();
+                    invaderShots.RemoveAt(i);                    
                 }
             }
             for (int i = PlayerShots.Count() - 1; i >= 0; --i)
@@ -111,6 +106,7 @@ namespace JCW_CS_INVADER
                     curPlayer.DecreaseAttackCount();
                 }
             }
+
 
             // 적 움직임===================================================
             bool breakDir = false;
@@ -149,7 +145,7 @@ namespace JCW_CS_INVADER
                                 dir = Direction.Left;
                                 breakDir = true;
                             }
-                            else
+                            else if (invader.GetPos().X <= 170)
                             {
                                 dir = Direction.Right;
                                 breakDir = true;
@@ -159,10 +155,36 @@ namespace JCW_CS_INVADER
                 }
             }
 
-            foreach (Invader invader in invaderList)
+            int invaderCount = invaderList.Count();
+            if (invaderCount != 0)
             {
-                invader.Move(dir);
+                if (moveCount >= invaderCount)
+                    moveCount = 0;
+
+                invaderList[moveCount++].Move(dir);
+
+                if(invaderCount <= 5)
+                {
+                    for (int i = 0; i < invaderCount; ++i)
+                    {
+                        if(invaderList[i].Attack())
+                            this.Controls.Add(invaderShots[invaderShots.Count() - 1].GetPicture());
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < 5; ++i)
+                    {
+                        if(invaderList[i].Attack())
+                            this.Controls.Add(invaderShots[invaderShots.Count() - 1].GetPicture());
+                    }
+                }
             }
+            
+            //foreach (Invader invader in invaderList) // 렉걸림
+            //{
+            //    invader.Move(dir);
+            //}
 
             // 플레이어 움직임
             foreach (Keys key in keyPressed)
@@ -188,7 +210,8 @@ namespace JCW_CS_INVADER
 
         private void Hit()
         {
-
+            if (invaderList.Count() == 0)
+                InvaderWave();
             //플레이어 탄환에 맞은 적
             for (int i = PlayerShots.Count() - 1; i >= 0; --i)
             {
@@ -198,6 +221,7 @@ namespace JCW_CS_INVADER
                     {
                         this.Controls.Remove(invaderList[j].MyPictureBox);
                         score += invaderList[j].GetScore();
+                        scoreLabel.Text = score.ToString();
                         invaderList.RemoveAt(j);
                         this.Controls.Remove(PlayerShots[i].MyPictureBox);
                         PlayerShots.RemoveAt(i);
@@ -214,7 +238,13 @@ namespace JCW_CS_INVADER
                 {
                     curPlayer.GetDamage();
                     this.Controls.Remove(invaderShots[i].MyPictureBox);
+                    invaderShots[i].GetShooter().DecreaseAttackCount();
                     invaderShots.RemoveAt(i);
+                    if(lifeCount>0)
+                    {
+                        this.Controls.Remove(playerLife[--lifeCount]);
+                        playerLife.RemoveAt(lifeCount);
+                    }                    
                     break;
                 }
             }
@@ -252,6 +282,76 @@ namespace JCW_CS_INVADER
             invadersImg.Add(pictureBox_EnemyShot);
             invadersImg.Add(pictureBox_TwinklingStar);            
         }
+
+        private void InvaderWave()
+        {
+            GameObject.Instance().Invader_Init(invadersImg, waveCount++);
+            invaderList = GameObject.Instance().GetEnemyList();
+            foreach (Invader invader in invaderList)
+            {
+                Controls.Add(invader.GetPicture());
+            }
+        }
+        private void Replay()
+        {
+            Controls.Clear();
+            
+            this.Update();
+            GameObject.Instance().Clear();
+            playerLife.Clear();
+            keyPressed.Clear();           
+
+            moveCount = 0;
+            waveCount = 0;
+            score = 0;
+            dir = Direction.Left;
+
+            gameOver = false;
+            SetStart();
+            animationTimer.Start();
+            gameTimer.Start();
+        }
+        private void SetStart()
+        {
+            ImgAdd();
+            GameObject.Instance().SetImg(invadersImg);
+
+            this.Controls.Add(scoreTitle);
+            this.Controls.Add(scoreLabel);
+
+            gameOverTitle = Label_GameOver;
+            gameOverDesc = Label_OverInfo;
+            this.Controls.Add(Label_GameOver);
+            this.Controls.Add(Label_OverInfo);
+
+            gameOverTitle.Visible = false;
+            gameOverDesc.Visible = false;
+
+            InvaderWave();
+
+            GameObject.Instance().Player_Init();
+            Controls.Add(GameObject.Instance().GetPlayer().GetPicture());
+            GameObject.Instance().Star_Init();
+
+            // 플레이어
+            curPlayer = GameObject.Instance().GetPlayer();
+            lifeCount = curPlayer.GetLifecount();
+            playerLife.Add(pictureBox_PlayerLife1);
+            playerLife.Add(pictureBox_PlayerLife2);
+            this.Controls.Add(playerLife[0]);
+            this.Controls.Add(playerLife[1]);
+
+            // 샷 추가
+            invaderShots = GameObject.Instance().GetEnemyShots();
+            PlayerShots = GameObject.Instance().GetPlayerShots();
+
+            // 별
+            stars = GameObject.Instance().GetStars();
+
+
+            this.KeyDown += new KeyEventHandler(GameInvaders_KeyDown);
+            this.KeyUp += new KeyEventHandler(GameInvaders_KeyUp);
+        }
         void GameInvaders_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Q)
@@ -260,7 +360,7 @@ namespace JCW_CS_INVADER
             {
                 if (e.KeyCode == Keys.S)
                 {
-
+                    Replay();
                 }
                 return;
             }
@@ -284,32 +384,5 @@ namespace JCW_CS_INVADER
                 keyPressed.Remove(e.KeyCode);
 
         }
-        /*
-        // 키 2개 동시입력은 안됨
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-        {
-            Point curPlayerPos = GameObject.Instance().GetPlayer().GetPos();
-            switch (keyData)
-            {
-                case Keys.Left:
-                    GameObject.Instance().GetPlayer().SetPos(curPlayerPos.X - 5, curPlayerPos.Y);
-                    return true;
-                case Keys.Right:
-                    GameObject.Instance().GetPlayer().SetPos(curPlayerPos.X + 5, curPlayerPos.Y);
-                    return true;
-            }
-            switch (keyData)
-            {
-                case Keys.Up:
-                    GameObject.Instance().GetPlayer().SetPos(curPlayerPos.X, curPlayerPos.Y - 5);
-                    return true;
-                case Keys.Down:
-                    GameObject.Instance().GetPlayer().SetPos(curPlayerPos.X, curPlayerPos.Y + 5);
-                    return true;
-            }
-
-            return base.ProcessCmdKey(ref msg, keyData);
-        }
-        */
     }                        
 }

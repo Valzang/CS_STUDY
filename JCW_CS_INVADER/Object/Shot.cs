@@ -27,6 +27,11 @@ namespace JCW_CS_INVADER.Object
             else
                 return false;
         }
+
+        public Mover GetShooter()
+        {
+            return shooter;
+        }
     }
 
     class EnemyShot : Shot
@@ -35,7 +40,6 @@ namespace JCW_CS_INVADER.Object
         {
             shooter = _shooter;
             SetPos(_pos);
-            shooter.DecreaseAttackCount();
             SettingPB(picture);
         }
 
@@ -58,6 +62,7 @@ namespace JCW_CS_INVADER.Object
             shooter = _shooter;
             SetPos(_pos);
             SettingPB(picture);
+            speed = 60;
         }
         public override bool Move()
         {

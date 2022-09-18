@@ -94,12 +94,22 @@ namespace JCW_CS_INVADER.Object
                 invader.SetImgPos();
         }
 
-        
+        public void Clear()
+        {
+            Invaders_Img.Clear();
+            InvadersList.Clear();
+            Missile_Invader.Clear();
+            WaveCount = 0;
+            TwinklingStar.Clear();
+            curPlayer = null;
+            Missile_Player.Clear();
 
-        public void Invader_Init(List<PictureBox> _Img) 
+        }
+
+        public void Invader_Init(List<PictureBox> _Img, int _wave) 
         {
             Invaders_Img = _Img;
-            InvadersList.Clear();             
+            WaveCount = _wave;       
             for (int i=0; i<5; ++i)
             {
                 for (int j=0; j<5; ++j)

@@ -81,20 +81,19 @@ namespace JCW_CS_INVADER.Object
 
         virtual public void Move(Direction dir)
         {
-            Point curPos = GetPos();
             switch(dir)
             {
                 case Direction.Left:
-                    SetPos(curPos.X - speed, curPos.Y);
+                    SetPos(position.X - speed, position.Y);
                     break;
                 case Direction.Right:
-                    SetPos(curPos.X + speed, curPos.Y);
+                    SetPos(position.X + speed, position.Y);
                     break;
                 case Direction.Up:
-                    SetPos(curPos.X, curPos.Y - speed);
+                    SetPos(position.X, position.Y - speed);
                     break;
                 case Direction.Down:
-                    SetPos(curPos.X, curPos.Y + speed);
+                    SetPos(position.X, position.Y + speed);
                     break;
             }
         }
@@ -127,9 +126,15 @@ namespace JCW_CS_INVADER.Object
             }
         }
 
+        public int GetLifecount()
+        {
+            return lifeCount;
+        }
+
         override public void GetDamage()
         {
             --lifeCount;
+            RePos();
             if (lifeCount < 0)
                 isDead = true;
         }

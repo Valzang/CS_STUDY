@@ -17,9 +17,10 @@ namespace JCW_CS_INVADER.Object
             return scorePoint;
         }
 
-        public void Attack()
+        public bool Attack()
         {
             double time = attackTimer.GetCurTime();
+            bool Success = false;
             if (time == 0.0f || time >= attackTime)
             {
                 if (curAttackCount < totalAttackCount)
@@ -28,9 +29,12 @@ namespace JCW_CS_INVADER.Object
                     ++curAttackCount;
                     attackTimer.TimerReset();
                     attackTimer.TimerStart();
+                    Success = true;
+                    time += 0.001f;
                 }
             }      
-            attackTimer.TimerUpdate();            
+            attackTimer.TimerUpdate();
+            return Success;
         }
 
         protected void SetAttackDefault(int _WaveCount)

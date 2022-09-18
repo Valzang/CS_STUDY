@@ -42,6 +42,12 @@ namespace JCW_CS_INVADER
             this.pictureBox_PlayerShot = new System.Windows.Forms.PictureBox();
             this.pictureBox_EnemyShot = new System.Windows.Forms.PictureBox();
             this.pictureBox_TwinklingStar = new System.Windows.Forms.PictureBox();
+            this.pictureBox_PlayerLife1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_PlayerLife2 = new System.Windows.Forms.PictureBox();
+            this.Label_ScoreTitle = new System.Windows.Forms.Label();
+            this.Label_ScorePoint = new System.Windows.Forms.Label();
+            this.Label_GameOver = new System.Windows.Forms.Label();
+            this.Label_OverInfo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Player)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyStar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemySpaceship)).BeginInit();
@@ -51,6 +57,8 @@ namespace JCW_CS_INVADER
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerShot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyShot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TwinklingStar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerLife1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerLife2)).BeginInit();
             this.SuspendLayout();
             // 
             // animationTimer
@@ -146,24 +154,28 @@ namespace JCW_CS_INVADER
             // pictureBox_PlayerShot
             // 
             this.pictureBox_PlayerShot.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_PlayerShot.Enabled = false;
             this.pictureBox_PlayerShot.Image = global::JCW_CS_INVADER.Properties.Resources.Shot;
-            this.pictureBox_PlayerShot.Location = new System.Drawing.Point(395, 362);
+            this.pictureBox_PlayerShot.Location = new System.Drawing.Point(790, 350);
             this.pictureBox_PlayerShot.Name = "pictureBox_PlayerShot";
             this.pictureBox_PlayerShot.Size = new System.Drawing.Size(10, 10);
             this.pictureBox_PlayerShot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_PlayerShot.TabIndex = 6;
             this.pictureBox_PlayerShot.TabStop = false;
+            this.pictureBox_PlayerShot.Visible = false;
             // 
             // pictureBox_EnemyShot
             // 
             this.pictureBox_EnemyShot.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_EnemyShot.Enabled = false;
             this.pictureBox_EnemyShot.Image = global::JCW_CS_INVADER.Properties.Resources.Enemy_Shot;
-            this.pictureBox_EnemyShot.Location = new System.Drawing.Point(395, 247);
+            this.pictureBox_EnemyShot.Location = new System.Drawing.Point(788, 366);
             this.pictureBox_EnemyShot.Name = "pictureBox_EnemyShot";
             this.pictureBox_EnemyShot.Size = new System.Drawing.Size(15, 20);
             this.pictureBox_EnemyShot.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_EnemyShot.TabIndex = 7;
             this.pictureBox_EnemyShot.TabStop = false;
+            this.pictureBox_EnemyShot.Visible = false;
             // 
             // pictureBox_TwinklingStar
             // 
@@ -178,12 +190,89 @@ namespace JCW_CS_INVADER
             this.pictureBox_TwinklingStar.TabStop = false;
             this.pictureBox_TwinklingStar.Visible = false;
             // 
+            // pictureBox_PlayerLife1
+            // 
+            this.pictureBox_PlayerLife1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_PlayerLife1.Image = global::JCW_CS_INVADER.Properties.Resources.player;
+            this.pictureBox_PlayerLife1.Location = new System.Drawing.Point(770, 21);
+            this.pictureBox_PlayerLife1.Name = "pictureBox_PlayerLife1";
+            this.pictureBox_PlayerLife1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox_PlayerLife1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_PlayerLife1.TabIndex = 9;
+            this.pictureBox_PlayerLife1.TabStop = false;
+            // 
+            // pictureBox_PlayerLife2
+            // 
+            this.pictureBox_PlayerLife2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_PlayerLife2.Image = global::JCW_CS_INVADER.Properties.Resources.player;
+            this.pictureBox_PlayerLife2.Location = new System.Drawing.Point(770, 63);
+            this.pictureBox_PlayerLife2.Name = "pictureBox_PlayerLife2";
+            this.pictureBox_PlayerLife2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox_PlayerLife2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_PlayerLife2.TabIndex = 10;
+            this.pictureBox_PlayerLife2.TabStop = false;
+            // 
+            // Label_ScoreTitle
+            // 
+            this.Label_ScoreTitle.AutoSize = true;
+            this.Label_ScoreTitle.BackColor = System.Drawing.Color.Transparent;
+            this.Label_ScoreTitle.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Label_ScoreTitle.ForeColor = System.Drawing.SystemColors.Window;
+            this.Label_ScoreTitle.Location = new System.Drawing.Point(12, 30);
+            this.Label_ScoreTitle.Name = "Label_ScoreTitle";
+            this.Label_ScoreTitle.Size = new System.Drawing.Size(79, 30);
+            this.Label_ScoreTitle.TabIndex = 11;
+            this.Label_ScoreTitle.Text = "SCORE";
+            // 
+            // Label_ScorePoint
+            // 
+            this.Label_ScorePoint.AutoSize = true;
+            this.Label_ScorePoint.BackColor = System.Drawing.Color.Transparent;
+            this.Label_ScorePoint.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Label_ScorePoint.ForeColor = System.Drawing.SystemColors.Window;
+            this.Label_ScorePoint.Location = new System.Drawing.Point(21, 65);
+            this.Label_ScorePoint.Name = "Label_ScorePoint";
+            this.Label_ScorePoint.Size = new System.Drawing.Size(19, 21);
+            this.Label_ScorePoint.TabIndex = 12;
+            this.Label_ScorePoint.Text = "0";
+            this.Label_ScorePoint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Label_GameOver
+            // 
+            this.Label_GameOver.AutoSize = true;
+            this.Label_GameOver.BackColor = System.Drawing.Color.Transparent;
+            this.Label_GameOver.Font = new System.Drawing.Font("맑은 고딕", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Label_GameOver.ForeColor = System.Drawing.Color.Yellow;
+            this.Label_GameOver.Location = new System.Drawing.Point(104, 102);
+            this.Label_GameOver.Name = "Label_GameOver";
+            this.Label_GameOver.Size = new System.Drawing.Size(625, 128);
+            this.Label_GameOver.TabIndex = 13;
+            this.Label_GameOver.Text = "GAME OVER";
+            // 
+            // Label_OverInfo
+            // 
+            this.Label_OverInfo.AutoSize = true;
+            this.Label_OverInfo.BackColor = System.Drawing.Color.Transparent;
+            this.Label_OverInfo.Font = new System.Drawing.Font("맑은 고딕", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.Label_OverInfo.ForeColor = System.Drawing.Color.Red;
+            this.Label_OverInfo.Location = new System.Drawing.Point(212, 284);
+            this.Label_OverInfo.Name = "Label_OverInfo";
+            this.Label_OverInfo.Size = new System.Drawing.Size(420, 30);
+            this.Label_OverInfo.TabIndex = 14;
+            this.Label_OverInfo.Text = "Press S to start a new game or Q to quit";
+            // 
             // GameInvaders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::JCW_CS_INVADER.Properties.Resources.space;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Label_OverInfo);
+            this.Controls.Add(this.Label_GameOver);
+            this.Controls.Add(this.Label_ScorePoint);
+            this.Controls.Add(this.Label_ScoreTitle);
+            this.Controls.Add(this.pictureBox_PlayerLife2);
+            this.Controls.Add(this.pictureBox_PlayerLife1);
             this.Controls.Add(this.pictureBox_TwinklingStar);
             this.Controls.Add(this.pictureBox_EnemyShot);
             this.Controls.Add(this.pictureBox_PlayerShot);
@@ -209,7 +298,10 @@ namespace JCW_CS_INVADER
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerShot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_EnemyShot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_TwinklingStar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerLife1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PlayerLife2)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -226,6 +318,12 @@ namespace JCW_CS_INVADER
         private System.Windows.Forms.PictureBox pictureBox_PlayerShot;
         private System.Windows.Forms.PictureBox pictureBox_EnemyShot;
         private System.Windows.Forms.PictureBox pictureBox_TwinklingStar;
+        private System.Windows.Forms.PictureBox pictureBox_PlayerLife1;
+        private System.Windows.Forms.PictureBox pictureBox_PlayerLife2;
+        private System.Windows.Forms.Label Label_ScoreTitle;
+        private System.Windows.Forms.Label Label_ScorePoint;
+        private System.Windows.Forms.Label Label_GameOver;
+        private System.Windows.Forms.Label Label_OverInfo;
     }
 }
 

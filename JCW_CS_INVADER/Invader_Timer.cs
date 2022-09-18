@@ -30,7 +30,7 @@ namespace JCW_CS_INVADER
 
         public double GetCurTime()
         {
-            return curTime;
+            return curTime == 0.0f? curTime+=0.001f : curTime;
         }
     }
 }
